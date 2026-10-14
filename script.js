@@ -1,6 +1,13 @@
 const $ = (id) => document.getElementById(id);
-function updateClock(){ $('clock').textContent = new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date())+' IST'; }
+function updateClock(){ const now=new Date(); $('clock').textContent = new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now)+' IST'; $('live-date').textContent = new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'}).format(now); }
 updateClock(); setInterval(updateClock,1000); $('year').textContent = new Date().getFullYear();
+// Start a 30-day countdown once per browser. It persists across reloads on this device.
+const countdownKey='titan_ai_30_day_deadline';
+let deadline=Number(localStorage.getItem(countdownKey));
+if(!deadline || !Number.isFinite(deadline) || deadline <= Date.now()){ deadline=Date.now()+30*24*60*60*1000; localStorage.setItem(countdownKey,String(deadline)); }
+const totalWindow=30*24*60*60*1000;
+function updateCountdown(){const remaining=Math.max(0,deadline-Date.now());const totalSeconds=Math.floor(remaining/1000);const days=Math.floor(totalSeconds/86400);const hours=Math.floor((totalSeconds%86400)/3600);const minutes=Math.floor((totalSeconds%3600)/60);const seconds=totalSeconds%60;$('days').textContent=String(days).padStart(2,'0');$('hours').textContent=String(hours).padStart(2,'0');$('minutes').textContent=String(minutes).padStart(2,'0');$('seconds').textContent=String(seconds).padStart(2,'0');$('countdown-title').textContent=remaining>0?`${days} DAYS REMAINING`:'30-DAY WINDOW ENDED';$('countdown-progress').style.width=(remaining/totalWindow*100)+'%';}
+updateCountdown();setInterval(updateCountdown,1000);
 const form=$('analysis-form'), uid=$('uid'), progress=$('progress'), pct=$('progress-pct'), ptext=$('progress-text'), result=$('result');
 form.addEventListener('submit',(event)=>{
   event.preventDefault();
