@@ -14,3 +14,4 @@
 .countdown-track{height:7px}
 #countdown-progress{height:100%;width:100%;background:linear-gradient(90deg,var(--cyan),#5a7dff);box-shadow:0 0 15px rgba(63,244,224,.45);transition:width .5s linear}
 @media(max-width:650px){.countdown-head{align-items:flex-start;flex-direction:column}.timer{width:100%;gap:6px}.timer div{flex:1;min-width:55px;padding:10px 5px}.timer b{font-size:1.3rem}.system{flex-wrap:wrap;justify-content:flex-end}}
+[hidden] { display: none !important; }
