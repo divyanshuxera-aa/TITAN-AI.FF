@@ -29,7 +29,7 @@ form.addEventListener('submit',(event)=>{
   const value=uid.value.trim();
   if(!/^\d{5,20}$/.test(value)){result.textContent='[ ERROR ] UID must contain 5–20 digits.';return;}
   progress.style.width='0%';pct.textContent='0%';ptext.textContent='LOCAL CHECK INITIALIZED';result.textContent='[ RUNNING ] Validating UID format locally…';
-  const stages=[['Checking numeric format…',28],['Preparing local interface…',62],['Sequence complete.',100]];
+  const stages=[['Checking numeric format…',28],['Preparing account review status…',62],['Your account review request is ready. Submit it through official Garena Support.',100]];
   stages.forEach(([message,amount],index)=>setTimeout(()=>{
     progress.style.width=amount+'%';pct.textContent=amount+'%';ptext.textContent=amount===100?'COMPLETE':'PROCESSING';result.textContent='[ STATUS ] '+message+(amount===100?'':'');
     if(amount===100){
