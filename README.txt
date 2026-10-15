@@ -1,15 +1,17 @@
-TITAN.AI — PREVIEW REMOVAL / MAIN PAGE RESTORE
+TITAN.AI — Remove Welcome / ENTER Animation
 
-This package replaces the placeholder preview index.html with a full TITAN.AI-style main page and keeps the WELCOME TO TITAN UNBAN WORLD intro with an ENTER button.
+IMPORTANT:
+This package does NOT contain your original full website HTML. Do not replace index.html with a new/demo page, because that can erase your real main website.
 
-IMPORTANT: This is a website source-file replacement, not an automatic update to your GitHub account.
+SAFE FIX (recommended):
+1. Open your GitHub repository:
+   https://github.com/divyanshuxera-aa/TITAN-AI.FF
+2. Open index.html, then open History.
+3. Restore the version from BEFORE the welcome/ENTER animation was added.
+   This restores the original site content.
+4. If you want to keep the current index.html, upload remove-animation.js to the repository.
+5. In the real index.html, add this line just before </body>:
+   <script src="remove-animation.js"></script>
+6. Commit the changes, wait a few minutes, then reload the website.
 
-HOW TO APPLY ON GITHUB (phone/tablet):
-1. Download and extract this ZIP.
-2. Open https://github.com/divyanshuxera-aa/TITAN-AI.FF
-3. Open index.html and tap the pencil/Edit icon.
-4. Select all old contents, paste the contents of this package's index.html, then commit changes.
-5. Add these two files from this package to the repository root: welcome-animation.css and welcome-animation.js (use Add file → Upload files). Keep your existing style.css and script.js unchanged.
-6. Wait a few minutes for GitHub Pages to redeploy, then open the website in a private/incognito tab or clear site data.
-
-The page performs only a local UID-format check. It does not connect to Garena, perform an unban, or upload the selected file.
+If the preview text (“Your main website appears after ENTER”) is part of the current index.html, this helper cannot recreate overwritten main-site content. Restore the earlier index.html from History first.
