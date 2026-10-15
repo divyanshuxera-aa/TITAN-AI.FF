@@ -1,12 +1,6 @@
-TITAN.AI — ANIMATION PACKAGE
+TITAN.AI — SELF-CONTAINED ANIMATION FIX
 
-Files: index.html, style.css, script.js
+Use this package by replacing the site's current index.html with this index.html.
+All CSS and JavaScript are embedded in the HTML, so there are no external style.css/script.js path mismatches.
 
-Behavior:
-- Submit the form with a valid 5–20 digit UID and the full-screen animation starts.
-- Shows rotating neon rings, glowing TITAN mark, CHECKING YOUR ID, and progress from 0% to 100%.
-- After the animation, a 30-day reminder countdown starts and is saved in this browser.
-- Responsive CSS is included for mobile screens.
-
-Install: replace the corresponding files in your website repository and commit/publish the changes.
-Important: this is a local visual demo. It does not connect to Garena or verify account status, and cannot unban an account or guarantee an unban after 30 days.
+Submit a valid 5–20 digit UID to trigger the animation. This is a local visual demo only; it does not connect to Garena or verify/unban accounts. The 30-day countdown is only a reminder and does not guarantee an unban.
