@@ -1,6 +1,3 @@
-TITAN.AI — SELF-CONTAINED ANIMATION FIX
+TITAN.AI countdown timing fix
 
-Use this package by replacing the site's current index.html with this index.html.
-All CSS and JavaScript are embedded in the HTML, so there are no external style.css/script.js path mismatches.
-
-Submit a valid 5–20 digit UID to trigger the animation. This is a local visual demo only; it does not connect to Garena or verify/unban accounts. The 30-day countdown is only a reminder and does not guarantee an unban.
+Upload this index.html to your GitHub Pages repository, replacing the old index.html, then commit changes. The old v1 timer is ignored. The 30-day reminder begins only after the animation reaches 100% and finishes. It is a local reminder, not an actual Free Fire unban or status check.

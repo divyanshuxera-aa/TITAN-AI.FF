@@ -67,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const scanStatus = $('scan-status');
   const countdownSection = $('countdown-section');
   const DURATION = 30 * 24 * 60 * 60 * 1000;
-  const STORE_KEY = 'titan_ai_countdown_start_v1';
+  // v2 deliberately ignores the old timer that started too early.
+  const STORE_KEY = 'titan_ai_countdown_start_v2';
   let running = false;
 
   function updateClock() {
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ($('live-date')) $('live-date').textContent = new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric'}).format(now);
     if ($('year')) $('year').textContent = now.getFullYear();
   }
+  if (countdownSection) countdownSection.hidden = true;
   updateClock(); setInterval(updateClock, 1000);
 
   function showCountdown() {
@@ -133,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('scan-running');
         running = false;
         result.textContent = '[ COMPLETE ] ID format checked locally. The 30-day timer is only a reminder; it cannot unban an account or guarantee an unban.';
-        try { if (!localStorage.getItem(STORE_KEY)) localStorage.setItem(STORE_KEY, String(Date.now())); } catch (_) {}
+        try { localStorage.setItem(STORE_KEY, String(Date.now())); } catch (_) {}
         showCountdown();
         result.scrollIntoView({behavior:'smooth', block:'center'});
       }, 700);
