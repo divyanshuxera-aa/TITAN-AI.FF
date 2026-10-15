@@ -1,44 +1,75 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#09090d" />
-  <title>TITAN FF — UID Lookup</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#001012">
+<title>TITAN FF — Community Arena</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-  <main class="page">
-    <header class="brand"><div class="logo">T</div><div><p class="eyebrow">PLAYER INTELLIGENCE</p><h1>TITAN <span>FF</span></h1></div></header>
-    <section class="hero">
-      <p class="eyebrow">FREE FIRE COMMUNITY TOOL</p>
-      <h2>UID <span>LOOKUP</span></h2>
-      <p class="sub">Look up public profile details and the ban-check response returned by third-party APIs.</p>
-      <form id="lookupForm" class="search">
-        <label for="uid">PLAYER UID</label>
-        <div class="searchline"><input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="Enter Free Fire UID" required pattern="[0-9]{5,20}" /><button id="searchBtn" type="submit">CHECK UID <span>↗</span></button></div>
-        <div class="regionline"><label for="region">REGION</label><select id="region"><option value="IND">India (IND)</option><option value="SG">Singapore (SG)</option><option value="BR">Brazil (BR)</option><option value="BD">Bangladesh (BD)</option><option value="US">United States (US)</option><option value="ID">Indonesia (ID)</option><option value="ME">Middle East (ME)</option><option value="PK">Pakistan (PK)</option></select></div>
-      </form>
-      <p id="notice" class="notice" role="status">Enter a UID to start. Results depend on third-party API availability.</p>
-    </section>
+<main>
+  <header class="topbar">
+    <div class="brand">TITAN <span>FF</span></div>
+    <div class="status"><span class="dot"></span>SYSTEM ONLINE</div>
+  </header>
 
-    <section id="result" class="result hidden" aria-live="polite">
-      <div class="profile-banner">
-        <div class="banner-copy"><p class="eyebrow">PLAYER PROFILE</p><h3 id="playerName">Unknown Player</h3><p class="uidline">UID <strong id="playerUid">—</strong></p></div>
-        <div class="avatar" id="avatar"><span id="avatarInitial">?</span></div>
-        <div class="banner-glow"></div>
-      </div>
-      <div class="stats">
-        <article class="stat"><span>LEVEL</span><strong id="level">—</strong></article>
-        <article class="stat"><span>REGION</span><strong id="playerRegion">—</strong></article>
-        <article class="stat"><span>RANK</span><strong id="rank">—</strong></article>
-      </div>
-      <div class="ban-card"><div><p class="eyebrow">ACCOUNT STATUS</p><h3 id="banStatus">Not checked</h3><p id="banPeriod" class="muted">Ban details will appear here if the API provides them.</p></div><div id="banIcon" class="shield">?</div></div>
-      <div class="details"><h3>PROFILE DETAILS</h3><div class="detail-row"><span>Avatar ID</span><strong id="avatarId">—</strong></div><div class="detail-row"><span>Banner ID</span><strong id="bannerId">—</strong></div><div class="detail-row"><span>Guild / Clan</span><strong id="guild">—</strong></div><div class="detail-row"><span>API source</span><strong>Third-party</strong></div></div>
-      <p class="disclaimer">Unofficial community lookup. Player data and ban status may be missing, delayed, or inaccurate. “Unknown” does not mean banned or safe. TITAN FF is not affiliated with Garena.</p>
-    </section>
-    <footer>© <span id="year"></span> TITAN FF <span class="dot">•</span> COMMUNITY TOOL</footer>
-  </main>
-  <script src="script.js"></script>
+  <section class="hero">
+    <div class="eyebrow">FREE FIRE COMMUNITY ARENA</div>
+    <h1>TITAN FF</h1>
+    <p>YOUR ARENA. YOUR SQUAD. YOUR NEXT VICTORY.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="communityTitle">
+    <div class="panel-head"><span id="communityTitle">COMMUNITY ARENA</span><span class="protocol">TITAN FF HUB</span></div>
+    <p class="community-copy">Welcome to TITAN FF. Find community updates, team activities, and tournament announcements in one place.</p>
+    <div class="community-grid">
+      <article class="community-card"><h3>TOURNAMENTS</h3><p>Upcoming community matches and event announcements.</p></article>
+      <article class="community-card"><h3>COMMUNITY</h3><p>Stay connected with your squad and TITAN FF updates.</p></article>
+      <article class="community-card"><h3>TEAM PLAY</h3><p>Bring your squad together and prepare for your next match.</p></article>
+      <article class="community-card"><h3>ANNOUNCEMENTS</h3><p>Important community news and notices will appear here.</p></article>
+    </div>
+    <div class="notice">Community landing page only. API integration, UID submission, and player lookup have been removed.</div>
+  </section>
+
+  <div id="titan-global-timer" role="timer" aria-live="off">
+  <div class="timer-title">TITAN.AI · SHARED DEMO COUNTDOWN</div>
+  <div class="timer-values">
+    <div class="timer-unit"><div class="timer-number" id="titan-days">30</div><div class="timer-label">DAYS</div></div>
+    <div class="timer-unit"><div class="timer-number" id="titan-hours">00</div><div class="timer-label">HOURS</div></div>
+    <div class="timer-unit"><div class="timer-number" id="titan-minutes">00</div><div class="timer-label">MINUTES</div></div>
+    <div class="timer-unit"><div class="timer-number" id="titan-seconds">00</div><div class="timer-label">SECONDS</div></div>
+  </div>
+  <div class="timer-note">Demo countdown only — the same fixed deadline is shown to every visitor. It does not control real account access.</div>
+</div>
+<script>
+// Fixed deadline: same for every visitor, independent of browser localStorage.
+// Change this ISO date to set a different shared end date.
+(function(){
+  const sharedDeadline = new Date('2026-11-14T23:59:59Z').getTime();
+  const ids = {days: document.getElementById('titan-days'), hours: document.getElementById('titan-hours'), minutes: document.getElementById('titan-minutes'), seconds: document.getElementById('titan-seconds')};
+  function updateSharedTimer(){
+    let remaining = Math.max(0, sharedDeadline - Date.now());
+    const days = Math.floor(remaining / 86400000); remaining %= 86400000;
+    const hours = Math.floor(remaining / 3600000); remaining %= 3600000;
+    const minutes = Math.floor(remaining / 60000); remaining %= 60000;
+    const seconds = Math.floor(remaining / 1000);
+    ids.days.textContent = String(days).padStart(2,'0');
+    ids.hours.textContent = String(hours).padStart(2,'0');
+    ids.minutes.textContent = String(minutes).padStart(2,'0');
+    ids.seconds.textContent = String(seconds).padStart(2,'0');
+  }
+  updateSharedTimer(); setInterval(updateSharedTimer,1000);
+})();
+</script>
+
+  <section class="panel community">
+    <div class="panel-head"><span>ABOUT TITAN FF</span><span class="protocol">COMMUNITY HUB</span></div>
+    <p class="community-copy">A dark cyber interface with cyan-green neon styling for the TITAN FF community.</p>
+  </section>
+
+  <footer class="footer">© <span id="currentYear">2026</span> TITAN FF<br>COMMUNITY ARENA</footer>
+</main>
 </body>
 </html>
