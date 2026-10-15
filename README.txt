@@ -1,3 +1,4 @@
-TITAN.AI countdown timing fix
+TITAN UNBAN SYSTEM ACTIVATED — local visual demo
 
-Upload this index.html to your GitHub Pages repository, replacing the old index.html, then commit changes. The old v1 timer is ignored. The 30-day reminder begins only after the animation reaches 100% and finishes. It is a local reminder, not an actual Free Fire unban or status check.
+Replace your repository index.html with this file and commit changes.
+This is a local UI animation/reminder only; it does not connect to Garena, change account status, or guarantee an unban.
