@@ -1,5 +1,8 @@
-TITAN UNBAN SYSTEM ACTIVATED — interface update
+TITAN website background music
 
-Upload this index.html to the root of your GitHub Pages repository, replacing the old index.html, then commit changes.
+Music extracted from your uploaded video.
 
-This is a local visual demo: terminal lines are simulated, it does not connect to Free Fire servers, check real account status, or unban an account. The 30-day timer is only a local reminder.
+To make it repeat continuously while visitors stay on the website, the website's HTML must use:
+<audio id="bgMusic" src="background-music.mp3" autoplay loop></audio>
+
+Note: Mobile browsers may require the visitor to tap the page/button before audio can start. Keep background-music.mp3 beside index.html in your website repository.
