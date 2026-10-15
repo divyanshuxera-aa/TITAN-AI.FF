@@ -1,105 +1,121 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const $ = (id) => document.getElementById(id);
-  const form = $('analysis-form');
-  const uid = $('uid');
-  const progress = $('progress');
-  const pct = $('progress-pct');
-  const ptext = $('progress-text');
-  const result = $('result');
-  const overlay = $('scan-overlay');
-  const scanPct = $('scan-pct');
-  const scanTitle = $('scan-title');
-  const scanStatus = $('scan-status');
-  const countdownSection = $('countdown-section');
-  const DURATION = 30 * 24 * 60 * 60 * 1000;
-  const STORE_KEY = 'titan_ai_countdown_start_v1';
-  let running = false;
+const $ = (id) => document.getElementById(id);
+$('year').textContent = new Date().getFullYear();
 
-  function updateClock() {
-    const now = new Date();
-    if ($('clock')) $('clock').textContent = new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false}).format(now) + ' IST';
-    if ($('live-date')) $('live-date').textContent = new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric'}).format(now);
-    if ($('year')) $('year').textContent = now.getFullYear();
+const PROFILE_API = 'https://freefireinfo-zy9l.onrender.com/api/v1/player-profile';
+const BAN_API = 'https://api2.nftoken.info/checkbanned';
+
+function first(...values) { return values.find(v => v !== undefined && v !== null && v !== ''); }
+function textValue(value, fallback = '—') { return value === undefined || value === null || value === '' ? fallback : String(value); }
+function unwrapProfile(json) {
+  return json?.data || json?.player || json;
+}
+function normalizeProfile(json) {
+  const root = unwrapProfile(json);
+  const basic = root?.basicinfo || root?.basicInfo || root?.playerInfo || root?.player_info || root;
+  const clan = root?.claninfo || root?.clanInfo || root?.clanBasicInfo || root?.guild || {};
+  const profile = root?.profileinfo || root?.profileInfo || {};
+  return {
+    uid: first(basic?.accountid, basic?.accountId, basic?.uid, basic?.player_id),
+    name: first(basic?.nickname, basic?.name, root?.nickname),
+    level: first(basic?.level, root?.level),
+    region: first(basic?.region, root?.region),
+    rank: first(basic?.rankingpoints, basic?.rankingPoints, basic?.rank, root?.rank),
+    avatarId: first(basic?.headpic, basic?.headPic, profile?.avatarId, profile?.avatarid, root?.avatarId),
+    bannerId: first(basic?.bannerid, basic?.bannerId, profile?.bannerId, profile?.bannerid, root?.bannerId),
+    guild: first(clan?.clanname, clan?.clanName, clan?.name, root?.clanName)
+  };
+}
+function normalizeBan(json) {
+  const d = json?.data || json?.result || json;
+  const label = first(d?.ban_status, d?.banStatus, d?.status_text, d?.statusText);
+  const isBanned = first(d?.is_banned, d?.isBanned, d?.banned);
+  const period = first(d?.ban_period, d?.banPeriod, d?.period);
+  if (label && !['success', 'ok'].includes(String(label).toLowerCase())) {
+    const low = String(label).toLowerCase();
+    if (low.includes('not banned') || low.includes('unbanned')) return {label:'NOT BANNED', period:'No ban reported by this API.', state:'ok'};
+    if (low.includes('permanent') || low.includes('indefinitely')) return {label:'PERMANENT BAN REPORTED', period:textValue(period, 'API reports an indefinite ban.'), state:'bad'};
+    if (low.includes('banned')) return {label:'BAN REPORTED', period:textValue(period, 'Duration not provided.'), state:'bad'};
   }
-  updateClock(); setInterval(updateClock, 1000);
-
-  function showCountdown() {
-    let start = 0;
-    try { start = Number(localStorage.getItem(STORE_KEY)); } catch (_) {}
-    if (!start || !Number.isFinite(start) || !countdownSection) return;
-    countdownSection.hidden = false;
-    const left = Math.max(0, start + DURATION - Date.now());
-    $('days').textContent = String(Math.floor(left / 86400000)).padStart(2,'0');
-    $('hours').textContent = String(Math.floor(left % 86400000 / 3600000)).padStart(2,'0');
-    $('minutes').textContent = String(Math.floor(left % 3600000 / 60000)).padStart(2,'0');
-    $('seconds').textContent = String(Math.floor(left % 60000 / 1000)).padStart(2,'0');
-    $('countdown-title').textContent = left ? '30-DAY SESSION WINDOW' : 'SESSION WINDOW ENDED';
-    $('countdown-progress').style.width = `${Math.max(0, Math.min(100, left / DURATION * 100))}%`;
+  if (isBanned === false || isBanned === 0 || isBanned === '0') return {label:'NOT BANNED', period:'No ban reported by this API.', state:'ok'};
+  if (isBanned === true || isBanned === 1 || isBanned === '1') {
+    const p = period === undefined || period === null || period === 0 || period === '0' ? '' : String(period);
+    return {label:'BAN REPORTED', period:p ? `Reported ban period: ${p}` : 'API reports a ban but did not provide a duration.', state:'bad'};
   }
-  showCountdown(); setInterval(showCountdown, 1000);
-
-  const steps = [
-    {at: 5, title:'INITIALIZING INTERFACE', status:'Preparing local validation sequence…'},
-    {at: 20, title:'CHECKING YOUR ID', status:'Checking your ID format locally in this browser…'},
-    {at: 42, title:'VERIFYING FORM FIELDS', status:'Confirming required fields are complete…'},
-    {at: 64, title:'RUNNING LOCAL CHECK', status:'This page does not connect to Free Fire game servers…'},
-    {at: 82, title:'30-DAY COUNTDOWN', status:'After 30 days, check your account status with official Free Fire support. An unban is not guaranteed.'},
-    {at: 100, title:'LOCAL CHECK COMPLETE', status:'UID format check completed successfully.'}
-  ];
-
-  function runAnimation() {
-    running = true;
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('scan-running');
-    let index = 0;
-    const started = performance.now();
-    const total = 5200;
-    scanTitle.textContent = 'INITIALIZING INTERFACE';
-    scanStatus.textContent = 'Preparing local validation sequence…';
-    scanPct.textContent = '0%';
-    $('scan-progress').style.width = '0%';
-    const tick = (now) => {
-      const amount = Math.min(100, Math.floor((now - started) / total * 100));
-      while (index < steps.length && amount >= steps[index].at) {
-        scanTitle.textContent = steps[index].title;
-        scanStatus.textContent = steps[index].status;
-        index++;
-      }
-      scanPct.textContent = amount + '%';
-      $('scan-progress').style.width = amount + '%';
-      progress.style.width = amount + '%';
-      pct.textContent = amount + '%';
-      ptext.textContent = amount === 100 ? 'COMPLETE' : 'PROCESSING';
-      if (amount < 100) requestAnimationFrame(tick);
-      else setTimeout(() => {
-        overlay.classList.remove('active');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('scan-running');
-        running = false;
-        result.textContent = '[ COMPLETE ] ID format checked locally. The 30-day timer is only a reminder; it cannot unban an account or guarantee an unban.';
-        try { if (!localStorage.getItem(STORE_KEY)) localStorage.setItem(STORE_KEY, String(Date.now())); } catch (_) {}
-        showCountdown();
-        result.scrollIntoView({behavior:'smooth', block:'center'});
-      }, 700);
-    };
-    requestAnimationFrame(tick);
+  return {label:'UNKNOWN', period:'The API did not return a recognizable ban status.', state:'unknown'};
+}
+async function fetchJson(url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 18000);
+  try {
+    const response = await fetch(url, { signal: controller.signal, headers: { 'Accept': 'application/json' } });
+    if (!response.ok) throw new Error(`API returned HTTP ${response.status}`);
+    return await response.json();
+  } finally { clearTimeout(timer); }
+}
+function showBan(result) {
+  $('banStatus').textContent = result.label;
+  $('banPeriod').textContent = result.period;
+  $('banIcon').textContent = result.state === 'ok' ? '✓' : result.state === 'bad' ? '!' : '?';
+  $('banIcon').className = `shield ${result.state === 'ok' ? 'ok' : result.state === 'bad' ? 'bad' : ''}`;
+}
+function renderProfile(p, requestedUid, selectedRegion) {
+  $('playerName').textContent = textValue(p.name, 'Player name unavailable');
+  $('playerUid').textContent = textValue(p.uid, requestedUid);
+  $('level').textContent = textValue(p.level);
+  $('playerRegion').textContent = textValue(p.region, selectedRegion);
+  $('rank').textContent = textValue(p.rank);
+  $('avatarId').textContent = textValue(p.avatarId);
+  $('bannerId').textContent = textValue(p.bannerId);
+  $('guild').textContent = textValue(p.guild, 'Not provided by API');
+  const initial = textValue(p.name, '?').trim().charAt(0).toUpperCase() || '?';
+  $('avatarInitial').textContent = initial;
+  $('result').classList.remove('hidden');
+}
+$('lookupForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const uid = $('uid').value.trim();
+  const region = $('region').value;
+  if (!/^\d{5,20}$/.test(uid)) {
+    $('notice').textContent = 'Please enter a numeric UID between 5 and 20 digits.';
+    $('notice').className = 'notice error';
+    return;
   }
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (running) return;
-    const value = uid.value.trim();
-    if (!/^\d{5,20}$/.test(value)) {
-      result.textContent = '[ ERROR ] Enter a UID containing 5–20 digits.';
-      uid.focus(); return;
+  $('searchBtn').disabled = true;
+  $('searchBtn').textContent = 'CHECKING…';
+  $('notice').textContent = 'Checking public profile and ban status…';
+  $('notice').className = 'notice';
+  $('result').classList.add('hidden');
+  showBan({label:'CHECKING…',period:'Waiting for the ban-check API.',state:'unknown'});
+  try {
+    const profileUrl = `${PROFILE_API}?uid=${encodeURIComponent(uid)}&server=${encodeURIComponent(region)}&need_gallery_info=false&need_blacklist=false`;
+    const banUrl = `${BAN_API}?id=${encodeURIComponent(uid)}`;
+    const results = await Promise.allSettled([fetchJson(profileUrl), fetchJson(banUrl)]);
+    let gotProfile = false;
+    if (results[0].status === 'fulfilled') {
+      const p = normalizeProfile(results[0].value);
+      if (p.name || p.level || p.uid) { renderProfile(p, uid, region); gotProfile = true; }
     }
-    result.textContent = '[ RUNNING ] Local UID format check in progress…';
-    runAnimation();
-  });
-
-  $('proof').addEventListener('change', () => {
-    const file = $('proof').files && $('proof').files[0];
-    if (file) result.textContent = '[ FILE SELECTED ] Reference image stays on this device and is not uploaded.';
-  });
+    if (results[1].status === 'fulfilled') showBan(normalizeBan(results[1].value));
+    else showBan({label:'UNKNOWN',period:'Ban-check API unavailable or blocked by the browser.',state:'unknown'});
+    if (!gotProfile) {
+      $('result').classList.remove('hidden');
+      $('playerName').textContent = 'Profile unavailable';
+      $('playerUid').textContent = uid;
+      $('avatarInitial').textContent = '?';
+      $('level').textContent = '—'; $('playerRegion').textContent = region; $('rank').textContent = '—';
+      $('avatarId').textContent = '—'; $('bannerId').textContent = '—'; $('guild').textContent = 'Profile API unavailable or UID not found';
+    }
+    const profileFailed = results[0].status === 'rejected';
+    const banFailed = results[1].status === 'rejected';
+    $('notice').textContent = profileFailed || banFailed
+      ? 'Some API data could not be loaded. This can happen if the service is offline or blocks browser requests (CORS). See README for next steps.'
+      : 'Lookup complete. Check the notes below; third-party results are not guaranteed to be accurate.';
+    if (profileFailed || banFailed) $('notice').className = 'notice error';
+  } catch (error) {
+    $('notice').textContent = 'Lookup failed. The API may be offline or block browser requests. Try again later.';
+    $('notice').className = 'notice error';
+  } finally {
+    $('searchBtn').disabled = false;
+    $('searchBtn').innerHTML = 'CHECK UID <span>↗</span>';
+  }
 });
