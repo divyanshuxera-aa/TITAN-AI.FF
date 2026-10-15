@@ -1,81 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a10">
-  <title>TITAN.AI — Free Fire Community Portal</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="welcome-animation.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a10"><meta name="description" content="TITAN.AI cyber gaming interface">
+  <title>TITAN.AI — Cyber Interface</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="scanlines" aria-hidden="true"></div>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="TITAN AI home">
-      <span class="logo">T</span><span><b>TITAN<span>.AI</span></b><small>FREE FIRE COMMUNITY</small></span>
-    </a>
-    <div class="system"><i></i><span>SYSTEM ONLINE</span><time id="clock">--:--:-- IST</time></div>
-  </header>
-
+  <div class="scanlines"></div>
+  <div class="scan-overlay" id="scan-overlay" aria-hidden="true" role="status" aria-live="polite">
+    <div class="scan-core"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core-mark">T<span>.</span></div><div class="core-caption">TITAN SYSTEM</div></div>
+    <div class="scan-copy"><div class="kicker">// SECURE LOCAL SEQUENCE</div><h2 id="scan-title">INITIALIZING INTERFACE</h2><p id="scan-status">Preparing local validation sequence…</p><div class="scan-meter"><div id="scan-progress"></div></div><div class="scan-numbers"><span>PROCESS STATUS</span><b id="scan-pct">0%</b></div><p class="scan-foot">LOCAL UID FORMAT CHECK · NO GAME SERVER CONNECTION</p></div>
+  </div><header class="topbar"><a class="brand" href="#top"><span class="logo">T</span><span><b>TITAN<span>.AI</span></b><small>ADVANCED CYBER INTERFACE</small></span></a><div class="system"><i></i><span>SYSTEM ONLINE</span><time id="clock">--:--:-- IST</time><time id="live-date">-- --- ----</time></div></header>
   <main id="top">
-    <section class="hero">
-      <p class="kicker">// TITAN ACCOUNT REVIEW PORTAL</p>
-      <h1>WELCOME TO <span>TITAN.AI</span></h1>
-      <p class="intro">A community-built Free Fire account review interface. Enter your UID to begin a local format check.</p>
-
-      <section class="panel" aria-labelledby="panel-heading">
-        <div class="panel-title"><span id="panel-heading">ACCOUNT REVIEW CONSOLE</span><span class="status">● READY</span></div>
-        <form id="analysis-form">
-          <label for="uid">FREE FIRE PLAYER UID</label>
-          <input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="Enter your numeric UID" pattern="[0-9]{5,20}" minlength="5" maxlength="20" required>
-          <label for="proof">OPTIONAL SCREENSHOT / PROOF (STAYS ON YOUR DEVICE)</label>
-          <input id="proof" name="proof" type="file" accept="image/*">
-          <button class="primary" type="submit">START LOCAL CHECK <span>→</span></button>
-        </form>
-        <div class="progress-wrap">
-          <div class="progress-label"><span id="progress-text">AWAITING INPUT</span><span id="progress-pct">0%</span></div>
-          <div class="track"><div id="progress"></div></div>
-        </div>
-        <div id="result" class="result" role="status" aria-live="polite">[ SYSTEM ] Ready. Submit a UID to check its format.</div>
-        <p class="note">This page only checks UID format locally. It does not connect to Garena, unban accounts, or upload your UID or selected file. For account issues, use official Garena Support.</p>
-      </section>
-    </section>
-
-    <section id="countdown-section" class="panel countdown" hidden>
-      <div class="countdown-head">
-        <div><p class="kicker">// SESSION TIMER</p><h2 id="countdown-title">30 DAYS REMAINING</h2><p>Your local timer started after the check sequence finished.</p></div>
-        <div class="timer" aria-live="polite">
-          <div><b id="days">30</b><small>DAYS</small></div><div><b id="hours">00</b><small>HOURS</small></div><div><b id="minutes">00</b><small>MINUTES</small></div><div><b id="seconds">00</b><small>SECONDS</small></div>
-        </div>
+    <section class="hero"><div class="kicker">// PLAYER SYSTEMS · COMMUNITY TERMINAL</div><h1>TITAN<span>.AI</span></h1><p class="intro">Cyber interface with animated local UID format validation.</p>
+      <div class="panel"><div class="panel-title"><span>01 / GAME CODE ANALYSIS ENTRY PROTOCOL</span><span class="status">READY</span></div>
+        <form id="analysis-form"><label for="uid">Target Free Fire UID</label><input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="Enter your numeric UID" minlength="5" maxlength="20" pattern="[0-9]{5,20}" required>
+          <div class="two"><div><label for="registry">Registry date (optional)</label><input id="registry" type="date"></div><div><label for="proof">Reference image (optional)</label><input id="proof" type="file" accept="image/*"></div></div>
+          <button class="primary" type="submit">INITIALIZE ANALYSIS <span>↗</span></button>
+        </form><div class="progress-wrap"><div class="progress-label"><span id="progress-text">SYSTEM STANDBY</span><span id="progress-pct">0%</span></div><div class="track"><div id="progress"></div></div></div><p id="result" class="result" role="status" aria-live="polite">[ READY ] Enter a UID to validate its format.</p>
+        <p class="note">UID CHECK: This page validates the number format in your browser. It does not connect to Garena, access private data, or change account bans/status.</p>
       </div>
-      <div class="track countdown-track"><div id="countdown-progress"></div></div>
     </section>
-
-    <section class="grid" aria-label="Portal modules">
-      <article class="tile"><span>MODULE 01</span><h2>UID FORMAT CHECK</h2><p>Checks that the entered player UID contains 5–20 digits.</p><div class="module-state">LOCAL ONLY</div></article>
-      <article class="tile"><span>MODULE 02</span><h2>ACCOUNT GUIDANCE</h2><p>For real account restrictions, contact the game's official support team.</p><div class="module-state">GUIDANCE</div></article>
-      <article class="tile"><span>MODULE 03</span><h2>COMMUNITY HUB</h2><p>Stay connected with the TITAN community and follow safe account practices.</p><div class="module-state">COMMUNITY</div></article>
-    </section>
-
-    <section class="community">
-      <div><p class="kicker">// JOIN THE COMMUNITY</p><h2>PLAY SMART. <span>STAY CONNECTED.</span></h2><p>Follow community updates and always protect your account credentials.</p></div>
-      <a class="secondary" href="https://ffsupport.garena.com/" target="_blank" rel="noopener noreferrer">OFFICIAL GARENA SUPPORT ↗</a>
-    </section>
-  </main>
-  <footer>© <span id="year"></span> TITAN.AI <span class="foot-status">// COMMUNITY PORTAL • <span id="live-date">--</span></span></footer>
-
-  <div id="titan-welcome" class="titan-welcome" role="dialog" aria-modal="true" aria-label="Welcome to Titan Unban World">
-    <div class="welcome-noise" aria-hidden="true"></div><div class="welcome-orb orb-one" aria-hidden="true"></div><div class="welcome-orb orb-two" aria-hidden="true"></div>
-    <div class="welcome-content">
-      <div class="titan-mark" aria-hidden="true"><span>T</span></div>
-      <p class="welcome-kicker">GAMING COMMUNITY PRESENTS</p>
-      <h2 class="welcome-title"><span class="welcome-line">WELCOME TO</span><span class="welcome-brand">TITAN <b>UNBAN</b> WORLD</span></h2>
-      <div class="welcome-rule"><span></span></div><p class="welcome-subtitle">YOUR NEXT LEVEL STARTS HERE</p>
-      <button id="enter-titan" class="enter-button" type="button"><span>ENTER</span><span aria-hidden="true">→</span></button>
-    </div>
-    <div class="welcome-footer">TAP ENTER TO CONTINUE</div>
-  </div>
-  <script src="script.js"></script>
-  <script src="welcome-animation.js"></script>
-</body>
-</html>
+    <section class="countdown panel" id="countdown-section" hidden><div class="panel-title"><span>LIVE SYSTEM WINDOW</span><span class="status">30 DAY TIMER</span></div><div class="countdown-head"><div><div class="kicker">// LIVE DATE & COUNTDOWN</div><h2 id="countdown-title">30 DAYS REMAINING</h2><p class="note">The 30-day countdown begins after analysis completes.</p></div><div class="timer" aria-live="polite"><div><b id="days">30</b><small>DAYS</small></div><div><b id="hours">00</b><small>HOURS</small></div><div><b id="minutes">00</b><small>MIN</small></div><div><b id="seconds">00</b><small>SEC</small></div></div></div><div class="track countdown-track"><div id="countdown-progress"></div></div></section>
+    <section class="grid"><article class="tile"><span>02 / MODULE</span><h2>UID VALIDATION</h2><p>Checks that the entered UID contains 5–20 digits.</p><b class="module-state">● ACTIVE</b></article><article class="tile"><span>03 / MODULE</span><h2>LOCAL SEQUENCE</h2><p>Displays an animated local validation sequence after the form is submitted.</p><b class="module-state">● ACTIVE</b></article><article class="tile"><span>04 / MODULE</span><h2>ACCOUNT SECURITY</h2><p>Never enter your password or verification code on unofficial pages.</p><b class="module-state">● STANDBY</b></article></section>
+    <section class="community"><div><div class="kicker">// COMMUNITY GATEWAY</div><h2>ENTER THE <span>TITAN GRID.</span></h2><p>Connect with your squad. Play fair. Keep your account secure.</p></div><a class="secondary" href="https://ff.garena.com/" target="_blank" rel="noopener noreferrer">OFFICIAL FREE FIRE SITE ↗</a></section>
+  </main><footer>© <span id="year"></span> TITAN.AI <span class="foot-status">• LOCAL VALIDATION SYSTEM</span></footer><script src="script.js"></script>
+</body></html>
