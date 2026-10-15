@@ -1,14 +1,12 @@
-TITAN.AI — Animated Local Check
+TITAN.AI — ANIMATION PACKAGE
 
-Files:
-- index.html
-- style.css
-- script.js
+Files: index.html, style.css, script.js
 
-Upload all three files to the root of your GitHub Pages repository, replacing the existing files.
+Behavior:
+- Submit the form with a valid 5–20 digit UID and the full-screen animation starts.
+- Shows rotating neon rings, glowing TITAN mark, CHECKING YOUR ID, and progress from 0% to 100%.
+- After the animation, a 30-day reminder countdown starts and is saved in this browser.
+- Responsive CSS is included for mobile screens.
 
-When a valid 5–20 digit UID is submitted with START/INITIALIZE ANALYSIS, a full-screen cyber security-check animation plays, then returns to the page. The 30-day local timer begins after the animation finishes and is saved in that browser.
-
-This is a visual local UID-format check only. It does not connect to Garena, retrieve player information, or change any account status.
-
-Animation text updated: “CHECKING YOUR ID” and a 30-day countdown notice. It clearly states that an unban is not guaranteed and the page does not connect to Free Fire servers.
+Install: replace the corresponding files in your website repository and commit/publish the changes.
+Important: this is a local visual demo. It does not connect to Garena or verify account status, and cannot unban an account or guarantee an unban after 30 days.

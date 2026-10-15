@@ -16,3 +16,9 @@
 @keyframes orbit-spin{to{transform:rotate(360deg)}}@keyframes orbit-pulse{0%,100%{transform:scale(.94);opacity:.6}50%{transform:scale(1.04);opacity:1}}@keyframes core-breathe{0%,100%{transform:scale(.96);opacity:.8}50%{transform:scale(1.04);opacity:1}}
 @media(max-width:650px){.scan-overlay{flex-direction:column;gap:12px;padding:22px}.scan-core{width:min(54vw,230px)}.scan-copy{text-align:center}.scan-copy h2{font-size:22px}.scan-copy p{font-size:15px}.scan-meter{margin-top:20px}.scan-foot{margin-top:24px!important;font-size:8px!important}}
 @media(prefers-reduced-motion:reduce){.orbit,.core-mark{animation:none!important}.scan-overlay{transition:none}}
+
+/* Mobile-safe animation overlay: keep the status and progress visible on short screens. */
+.scan-overlay{min-height:100dvh;max-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:opacity;z-index:9999}
+.scan-core,.orbit,.core-mark{will-change:transform}
+.scan-overlay.active{display:flex}
+@media(max-width:650px){.scan-overlay{padding:18px 16px;gap:10px}.scan-core{flex:0 0 auto;width:min(48vw,190px);max-width:190px}.scan-copy{flex:0 0 auto;width:100%;max-width:440px}.scan-copy h2{font-size:clamp(20px,5.5vw,25px)}.scan-copy p{font-size:14px}.scan-foot{margin-top:16px!important;line-height:1.5}.scan-meter{margin-top:14px}}
