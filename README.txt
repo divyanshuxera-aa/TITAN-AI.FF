@@ -1,8 +1,5 @@
-TITAN.AI — original cyber interface split into three files
+TITAN UNBAN SYSTEM ACTIVATED — interface update
 
-Files: index.html, style.css, script.js.
-The original page content, form, demo interactions, and visual design are preserved.
-The shared countdown timer markup, CSS, and JavaScript are preserved from the original file unchanged.
-The page's existing scripts explicitly state that they are browser-only demo interactions and do not contact a live server.
+Upload this index.html to the root of your GitHub Pages repository, replacing the old index.html, then commit changes.
 
-Upload all three files to the same repository root. Keep the filenames unchanged.
+This is a local visual demo: terminal lines are simulated, it does not connect to Free Fire servers, check real account status, or unban an account. The 30-day timer is only a local reminder.
