@@ -3,32 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TITAN UNBAN WORLD — Welcome Animation Preview</title>
+  <title>TITAN UNBAN WORLD — Welcome Intro Preview</title>
   <link rel="stylesheet" href="welcome-animation.css">
 </head>
 <body>
   <main class="demo-content">
     <p class="eyebrow">TITAN UNBAN WORLD</p>
-    <h1>Welcome to the portal</h1>
-    <p>This is a preview page. On your real website, the intro will play above your existing page.</p>
-    <button id="replay-intro" type="button">Replay animation</button>
+    <h1>Your main website appears after ENTER</h1>
+    <p>This is preview content. On your real website, the same intro overlay reveals your existing page.</p>
   </main>
 
-  <div id="titan-welcome" class="titan-welcome" aria-label="Welcome to Titan Unban World">
+  <div id="titan-welcome" class="titan-welcome" role="dialog" aria-modal="true" aria-label="Welcome to Titan Unban World">
     <div class="welcome-noise" aria-hidden="true"></div>
     <div class="welcome-orb orb-one" aria-hidden="true"></div>
     <div class="welcome-orb orb-two" aria-hidden="true"></div>
     <div class="welcome-content">
-      <div class="titan-mark"><span>T</span></div>
+      <div class="titan-mark" aria-hidden="true"><span>T</span></div>
       <p class="welcome-kicker">GAMING COMMUNITY PRESENTS</p>
       <h2 class="welcome-title">
         <span class="welcome-line">WELCOME TO</span>
         <span class="welcome-brand">TITAN <b>UNBAN</b> WORLD</span>
       </h2>
       <div class="welcome-rule"><span></span></div>
-      <p class="welcome-subtitle">ENTER THE NEXT LEVEL</p>
+      <p class="welcome-subtitle">YOUR NEXT LEVEL STARTS HERE</p>
+      <button id="enter-titan" class="enter-button" type="button">
+        <span>ENTER</span><span class="enter-arrow" aria-hidden="true">→</span>
+      </button>
     </div>
-    <div class="welcome-skip">INITIALIZING <span>•••</span></div>
+    <div class="welcome-footer">TAP ENTER TO CONTINUE</div>
   </div>
 
   <script src="welcome-animation.js"></script>

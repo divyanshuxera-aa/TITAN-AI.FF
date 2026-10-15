@@ -1,26 +1,26 @@
 (() => {
   const overlay = document.getElementById("titan-welcome");
-  if (!overlay) return;
+  const enterButton = document.getElementById("enter-titan");
+  if (!overlay || !enterButton) return;
 
-  // Play once per page load. The overlay fades away after the intro animation.
-  const hideDelay = 6700;
-  const hideIntro = () => {
-    overlay.classList.add("is-hidden");
+  // Important: there is NO timer that closes the welcome screen.
+  // The main website is revealed only after the visitor presses ENTER.
+  const enterSite = () => {
+    if (overlay.classList.contains("is-exiting")) return;
+    overlay.classList.add("is-exiting");
+    enterButton.disabled = true;
+    window.setTimeout(() => {
+      overlay.remove();
+      document.body.classList.remove("intro-open");
+    }, 800);
   };
-  window.setTimeout(hideIntro, hideDelay);
 
-  // Preview button only; remove this block when adding the files to your real site.
-  const replay = document.getElementById("replay-intro");
-  if (replay) {
-    replay.addEventListener("click", () => {
-      overlay.classList.remove("is-hidden");
-      overlay.style.animation = "none";
-      void overlay.offsetWidth;
-      overlay.style.animation = "";
-      overlay.querySelector(".welcome-content").style.animation = "none";
-      void overlay.querySelector(".welcome-content").offsetWidth;
-      overlay.querySelector(".welcome-content").style.animation = "";
-      window.setTimeout(hideIntro, hideDelay);
-    });
-  }
+  document.body.classList.add("intro-open");
+  enterButton.addEventListener("click", enterSite);
+  enterButton.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      enterSite();
+    }
+  });
 })();

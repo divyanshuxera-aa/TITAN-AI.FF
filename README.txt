@@ -1,23 +1,19 @@
-TITAN UNBAN WORLD — Welcome Intro Animation
+TITAN UNBAN WORLD — ENTER Button Bug Fix
 
-This ZIP is a working preview plus files to integrate a welcome intro into your existing website.
+This package changes the welcome intro so it DOES NOT auto-close or stay looping forever:
+- The name/intro animation plays when the page opens.
+- The intro remains visible after the animation finishes.
+- The full website appears only when the visitor taps ENTER.
+- Tapping ENTER fades out the intro and reveals the page underneath.
 
-Files:
-- index.html: preview page (not a replacement for your real site's index.html)
-- welcome-animation.css: visual effects and animation
-- welcome-animation.js: fades the intro away after about 6.7 seconds
+IMPORTANT: `index.html` in this ZIP is only a preview. Do not replace your existing website index.html with it, or your current website content may be lost.
 
-Add it to your existing website:
-1. Upload `welcome-animation.css` and `welcome-animation.js` into the same folder as your current `index.html`.
-2. In your existing `index.html`, paste the `<div id="titan-welcome" ...>` block from this ZIP's `index.html` just before `</body>`.
-3. Add this inside your existing `<head>`:
-   <link rel="stylesheet" href="welcome-animation.css">
-4. Add this just before `</body>`, after the intro div:
-   <script src="welcome-animation.js"></script>
-5. Commit the changes and wait for GitHub Pages to publish.
+To add it to the current site:
+1. Upload `welcome-animation.css` and `welcome-animation.js` beside your existing index.html.
+2. Add `<link rel="stylesheet" href="welcome-animation.css">` inside the existing page's `<head>`.
+3. Copy the `<div id="titan-welcome" ...> ... </div>` welcome overlay from this ZIP's index.html into your existing index.html just before `</body>`.
+4. Add `<script src="welcome-animation.js"></script>` after that overlay, before `</body>`.
+5. Make sure old welcome-animation code that auto-hides the intro (for example `setTimeout(hideIntro, ...)` or `animation: titan-screen-out ... forwards`) is removed so it does not conflict.
+6. Commit changes in GitHub and refresh the website.
 
-Important:
-- Do NOT replace your current website's whole index.html with the preview index.html; that would replace your existing page.
-- This is a similar dark neon gaming-style intro inspired by the uploaded reference, not a frame-for-frame copy.
-- To change the title, edit the text in the welcome-title section of index.html.
-- Intro lasts about 6.7 seconds, then fades away to reveal the existing page.
+If your website already has welcome-animation.css/js files, replace those files with the matching files in this ZIP. Keep your existing main website markup and scripts.
