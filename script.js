@@ -41,10 +41,10 @@ showCountdown(); setInterval(showCountdown,1000);
 
 const steps = [
   {at: 8, title:'INITIALIZING INTERFACE', status:'Preparing local validation sequence…'},
-  {at: 25, title:'CHECKING UID FORMAT', status:'Checking numeric format in this browser…'},
+  {at: 25, title:'CHECKING YOUR ID', status:'Checking your ID format locally in this browser…'},
   {at: 47, title:'VERIFYING FORM FIELDS', status:'Confirming required fields are complete…'},
   {at: 69, title:'RUNNING LOCAL CHECK', status:'No connection to game servers is made…'},
-  {at: 88, title:'FINALIZING SESSION', status:'Finishing the local interface sequence…'},
+  {at: 88, title:'30-DAY COUNTDOWN', status:'After 30 days, check your account status with official Free Fire support. Unban is not guaranteed.'},
   {at:100, title:'LOCAL CHECK COMPLETE', status:'UID format check completed successfully.'}
 ];
 function runAnimation(value){
@@ -75,7 +75,7 @@ function runAnimation(value){
         overlay.setAttribute('aria-hidden','true');
         document.body.classList.remove('scan-running');
         running = false;
-        result.textContent = '[ COMPLETE ] UID format is valid. No game-account status was checked.';
+        result.textContent = '[ COMPLETE ] ID format checked locally. This countdown cannot unban an account or guarantee an unban after 30 days.';
         result.scrollIntoView({behavior:'smooth', block:'center'});
         if(!localStorage.getItem(STORE_KEY)) localStorage.setItem(STORE_KEY, String(Date.now()));
         showCountdown();
