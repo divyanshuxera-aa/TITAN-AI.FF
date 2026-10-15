@@ -1,0 +1,12 @@
+/* TITAN intro fix: do not hide the page behind the intro. */
+#titan-welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+}
+#titan-welcome.tw-hide,
+#titan-welcome.is-exiting {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

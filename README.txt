@@ -1,13 +1,15 @@
-TITAN QUICK INTRO — minimal and fast
+TITAN ENTER → MAIN WEBSITE FIX
 
-This is a short, single-screen intro. It animates once quickly and then waits on the ENTER button. Tapping ENTER immediately fades it out so your EXISTING website underneath becomes visible.
+The screenshot shows the preview page text ("Your main website appears after ENTER") is being revealed. That means the preview `index.html` was likely copied over the real site, or the preview content is currently on your live page. This package fixes the overlay behavior, but it cannot restore main website sections that were overwritten.
 
-Install in your existing GitHub Pages project:
-1. Add `titan-quick-intro.css` and `titan-quick-intro.js` to the same folder as your current index.html.
-2. Copy the overlay block from `add-to-existing-index.html` into your current index.html just before </body>.
-3. Add `<link rel="stylesheet" href="titan-quick-intro.css">` inside the existing <head>.
-4. Add `<script src="titan-quick-intro.js"></script>` just before </body>, after the overlay block.
-5. Remove old welcome overlay markup and old intro scripts/CSS that also control the welcome screen, or both animations may appear at once.
-6. Commit changes to GitHub and refresh the live site.
+1. Open your GitHub repository and open `index.html`.
+2. Restore your original full main website HTML from GitHub commit history if the preview page replaced it:
+   - Repository → History (or file history) → open the last version before the preview was pasted → Restore/revert or copy the original contents back.
+3. Keep your real website content intact.
+4. Keep the welcome overlay block from `welcome-overlay-snippet.html` just before `</body>`.
+5. Replace the old `welcome-animation.js` or `titan-quick-intro.js` code with `titan-enter-mainpage-fix.js` (or copy its code into the script file actually linked from index.html).
+6. If CSS is needed, add `titan-enter-mainpage-fix.css` and link it in the page head.
+7. Remove other old intro scripts that also handle the ENTER button, because duplicate handlers can conflict.
+8. Commit changes, then reload the live page.
 
-IMPORTANT: Do not replace your whole existing index.html with this snippet; preserve your main website content.
+Important: this ZIP does not contain your original site's main content because it was not provided in the upload. If the live `index.html` has been overwritten with the preview, restoring the prior GitHub version is necessary; this script alone cannot recreate missing sections.
