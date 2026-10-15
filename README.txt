@@ -1,22 +1,23 @@
-TITAN.AI — Timer Start Fix
+TITAN UNBAN WORLD — Welcome Intro Animation
 
-This ZIP contains a replacement script.js for your existing GitHub Pages site:
-https://divyanshuxera-aa.github.io/TITAN-AI.FF/
+This ZIP is a working preview plus files to integrate a welcome intro into your existing website.
 
-What it changes:
-- The 30-day countdown stays hidden when the page first opens.
-- It does not reuse an old countdown just because the page was visited before.
-- After a valid UID is submitted and the on-page sequence completes, a fresh 30-day countdown starts.
-- It keeps the existing page's element IDs and visual design.
+Files:
+- index.html: preview page (not a replacement for your real site's index.html)
+- welcome-animation.css: visual effects and animation
+- welcome-animation.js: fades the intro away after about 6.7 seconds
 
-Install:
-1. Download and extract this ZIP.
-2. Open your GitHub repository: https://github.com/divyanshuxera-aa/TITAN-AI.FF
-3. Open script.js, tap the pencil/Edit button, and replace all its contents with the script.js from this ZIP.
-4. Commit changes.
-5. Wait for GitHub Pages to update, then reload your site. If the old version remains, refresh the page or clear the browser cache.
+Add it to your existing website:
+1. Upload `welcome-animation.css` and `welcome-animation.js` into the same folder as your current `index.html`.
+2. In your existing `index.html`, paste the `<div id="titan-welcome" ...>` block from this ZIP's `index.html` just before `</body>`.
+3. Add this inside your existing `<head>`:
+   <link rel="stylesheet" href="welcome-animation.css">
+4. Add this just before `</body>`, after the intro div:
+   <script src="welcome-animation.js"></script>
+5. Commit the changes and wait for GitHub Pages to publish.
 
 Important:
-- This updates the timer behavior only; it does not change index.html or style.css.
-- On your current page, UID is required, while Registry date and Reference image are marked optional.
-- The page performs a local UID format check only. It does not contact Garena or submit an account review request.
+- Do NOT replace your current website's whole index.html with the preview index.html; that would replace your existing page.
+- This is a similar dark neon gaming-style intro inspired by the uploaded reference, not a frame-for-frame copy.
+- To change the title, edit the text in the welcome-title section of index.html.
+- Intro lasts about 6.7 seconds, then fades away to reveal the existing page.

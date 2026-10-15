@@ -1,24 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a10"><meta name="description" content="TITAN.AI cyber gaming interface">
-  <title>TITAN.AI — Cyber Interface</title><link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TITAN UNBAN WORLD — Welcome Animation Preview</title>
+  <link rel="stylesheet" href="welcome-animation.css">
 </head>
 <body>
-  <div class="scanlines"></div><header class="topbar"><a class="brand" href="#top"><span class="logo">T</span><span><b>TITAN<span>.AI</span></b><small>ADVANCED CYBER INTERFACE</small></span></a><div class="system"><i></i><span>SYSTEM ONLINE</span><time id="clock">--:--:-- IST</time><time id="live-date">-- --- ----</time></div></header>
-  <main id="top">
-    <section class="hero"><div class="kicker">// PLAYER SYSTEMS · COMMUNITY TERMINAL</div><h1>TITAN<span>.AI</span></h1><p class="intro">Player UID validation interface and local system status.</p>
-      <div class="panel"><div class="panel-title"><span>01 / GAME CODE ANALYSIS ENTRY PROTOCOL</span><span class="status">READY</span></div>
-        <form id="analysis-form"><label for="uid">Target Free Fire UID</label><input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="Enter your numeric UID" minlength="5" maxlength="20" pattern="[0-9]{5,20}" required>
-          <div class="two"><div><label for="registry">Registry date (optional)</label><input id="registry" type="date"></div><div><label for="proof">Reference image (optional)</label><input id="proof" type="file" accept="image/*"></div></div>
-          <button class="primary" type="submit">INITIALIZE ANALYSIS <span>↗</span></button>
-        </form><div class="progress-wrap"><div class="progress-label"><span id="progress-text">SYSTEM STANDBY</span><span id="progress-pct">0%</span></div><div class="track"><div id="progress"></div></div></div><p id="result" class="result" role="status" aria-live="polite">[ READY ] Enter a UID to validate its format.</p>
-        <p class="note">UID CHECK: This page validates the number format in your browser. It does not connect to Garena, access private data, or change account bans/status.</p>
-      </div>
-    </section>
-    <section class="countdown panel" id="countdown-section" hidden><div class="panel-title"><span>LIVE SYSTEM WINDOW</span><span class="status">30 DAY TIMER</span></div><div class="countdown-head"><div><div class="kicker">// LIVE DATE & COUNTDOWN</div><h2 id="countdown-title">30 DAYS REMAINING</h2><p class="note">The 30-day countdown begins after analysis completes.</p></div><div class="timer" aria-live="polite"><div><b id="days">30</b><small>DAYS</small></div><div><b id="hours">00</b><small>HOURS</small></div><div><b id="minutes">00</b><small>MIN</small></div><div><b id="seconds">00</b><small>SEC</small></div></div></div><div class="track countdown-track"><div id="countdown-progress"></div></div></section>
-    <section class="grid"><article class="tile"><span>02 / MODULE</span><h2>UID VALIDATION</h2><p>Checks that the entered UID contains 5–20 digits.</p><b class="module-state">● ACTIVE</b></article><article class="tile"><span>03 / MODULE</span><h2>LOCAL SEQUENCE</h2><p>Runs a visible local processing sequence in your browser.</p><b class="module-state">● ACTIVE</b></article><article class="tile"><span>04 / MODULE</span><h2>ACCOUNT SECURITY</h2><p>Never enter your password or verification code on unofficial pages.</p><b class="module-state">● STANDBY</b></article></section>
-    <section class="community"><div><div class="kicker">// COMMUNITY GATEWAY</div><h2>ENTER THE <span>TITAN GRID.</span></h2><p>Connect with your squad. Play fair. Keep your account secure.</p></div><a class="secondary" href="https://ff.garena.com/" target="_blank" rel="noopener noreferrer">OFFICIAL FREE FIRE SITE ↗</a></section>
-  </main><footer>© <span id="year"></span> TITAN.AI <span class="foot-status">• LOCAL SYSTEM STATUS</span></footer><script src="script.js"></script>
-</body></html>
+  <main class="demo-content">
+    <p class="eyebrow">TITAN UNBAN WORLD</p>
+    <h1>Welcome to the portal</h1>
+    <p>This is a preview page. On your real website, the intro will play above your existing page.</p>
+    <button id="replay-intro" type="button">Replay animation</button>
+  </main>
+
+  <div id="titan-welcome" class="titan-welcome" aria-label="Welcome to Titan Unban World">
+    <div class="welcome-noise" aria-hidden="true"></div>
+    <div class="welcome-orb orb-one" aria-hidden="true"></div>
+    <div class="welcome-orb orb-two" aria-hidden="true"></div>
+    <div class="welcome-content">
+      <div class="titan-mark"><span>T</span></div>
+      <p class="welcome-kicker">GAMING COMMUNITY PRESENTS</p>
+      <h2 class="welcome-title">
+        <span class="welcome-line">WELCOME TO</span>
+        <span class="welcome-brand">TITAN <b>UNBAN</b> WORLD</span>
+      </h2>
+      <div class="welcome-rule"><span></span></div>
+      <p class="welcome-subtitle">ENTER THE NEXT LEVEL</p>
+    </div>
+    <div class="welcome-skip">INITIALIZING <span>•••</span></div>
+  </div>
+
+  <script src="welcome-animation.js"></script>
+</body>
+</html>
