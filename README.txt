@@ -1,19 +1,13 @@
-TITAN UNBAN WORLD — ENTER Button Bug Fix
+TITAN QUICK INTRO — minimal and fast
 
-This package changes the welcome intro so it DOES NOT auto-close or stay looping forever:
-- The name/intro animation plays when the page opens.
-- The intro remains visible after the animation finishes.
-- The full website appears only when the visitor taps ENTER.
-- Tapping ENTER fades out the intro and reveals the page underneath.
+This is a short, single-screen intro. It animates once quickly and then waits on the ENTER button. Tapping ENTER immediately fades it out so your EXISTING website underneath becomes visible.
 
-IMPORTANT: `index.html` in this ZIP is only a preview. Do not replace your existing website index.html with it, or your current website content may be lost.
+Install in your existing GitHub Pages project:
+1. Add `titan-quick-intro.css` and `titan-quick-intro.js` to the same folder as your current index.html.
+2. Copy the overlay block from `add-to-existing-index.html` into your current index.html just before </body>.
+3. Add `<link rel="stylesheet" href="titan-quick-intro.css">` inside the existing <head>.
+4. Add `<script src="titan-quick-intro.js"></script>` just before </body>, after the overlay block.
+5. Remove old welcome overlay markup and old intro scripts/CSS that also control the welcome screen, or both animations may appear at once.
+6. Commit changes to GitHub and refresh the live site.
 
-To add it to the current site:
-1. Upload `welcome-animation.css` and `welcome-animation.js` beside your existing index.html.
-2. Add `<link rel="stylesheet" href="welcome-animation.css">` inside the existing page's `<head>`.
-3. Copy the `<div id="titan-welcome" ...> ... </div>` welcome overlay from this ZIP's index.html into your existing index.html just before `</body>`.
-4. Add `<script src="welcome-animation.js"></script>` after that overlay, before `</body>`.
-5. Make sure old welcome-animation code that auto-hides the intro (for example `setTimeout(hideIntro, ...)` or `animation: titan-screen-out ... forwards`) is removed so it does not conflict.
-6. Commit changes in GitHub and refresh the website.
-
-If your website already has welcome-animation.css/js files, replace those files with the matching files in this ZIP. Keep your existing main website markup and scripts.
+IMPORTANT: Do not replace your whole existing index.html with this snippet; preserve your main website content.

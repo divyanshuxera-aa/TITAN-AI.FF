@@ -1,0 +1,15 @@
+#titan-welcome{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;background:radial-gradient(circle at center,#10243b 0%,#050812 52%,#010207 100%);color:#fff;font-family:Arial,Helvetica,sans-serif;opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease;overflow:hidden}
+#titan-welcome::before,#titan-welcome::after{content:"";position:absolute;width:42vw;height:42vw;min-width:220px;min-height:220px;border-radius:50%;filter:blur(75px);opacity:.2;pointer-events:none}
+#titan-welcome::before{background:#1685ff;left:-15%;top:15%}
+#titan-welcome::after{background:#ff3159;right:-15%;bottom:5%}
+#titan-welcome .tw-content{position:relative;text-align:center;padding:20px;animation:tw-in .55s ease both}
+#titan-welcome .tw-small{font-size:10px;letter-spacing:.35em;color:#a7c4df;margin:0 0 14px}
+#titan-welcome .tw-title{font-size:clamp(25px,7vw,58px);font-weight:900;letter-spacing:-.04em;margin:0;text-shadow:0 0 25px #1685ff55}
+#titan-welcome .tw-title b{color:#ff3159}
+#titan-welcome .tw-line{width:min(260px,65vw);height:2px;margin:19px auto;background:linear-gradient(90deg,transparent,#36d9ff,#fff,#ff3159,transparent);animation:tw-line .7s .2s both}
+#titan-welcome .tw-enter{border:1px solid #36d9ff;border-radius:3px;background:#07192b;color:#fff;padding:12px 25px;font-size:12px;font-weight:800;letter-spacing:.3em;cursor:pointer;box-shadow:0 0 20px #1685ff25}
+#titan-welcome .tw-enter:focus-visible{outline:2px solid #fff;outline-offset:4px}
+#titan-welcome.tw-hide{opacity:0;visibility:hidden;pointer-events:none}
+@keyframes tw-in{from{opacity:0;transform:translateY(9px) scale(.98);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes tw-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){#titan-welcome .tw-content,#titan-welcome .tw-line{animation:none}}
