@@ -1,15 +1,15 @@
-TITAN ENTER → MAIN WEBSITE FIX
+TITAN.AI — PREVIEW REMOVAL / MAIN PAGE RESTORE
 
-The screenshot shows the preview page text ("Your main website appears after ENTER") is being revealed. That means the preview `index.html` was likely copied over the real site, or the preview content is currently on your live page. This package fixes the overlay behavior, but it cannot restore main website sections that were overwritten.
+This package replaces the placeholder preview index.html with a full TITAN.AI-style main page and keeps the WELCOME TO TITAN UNBAN WORLD intro with an ENTER button.
 
-1. Open your GitHub repository and open `index.html`.
-2. Restore your original full main website HTML from GitHub commit history if the preview page replaced it:
-   - Repository → History (or file history) → open the last version before the preview was pasted → Restore/revert or copy the original contents back.
-3. Keep your real website content intact.
-4. Keep the welcome overlay block from `welcome-overlay-snippet.html` just before `</body>`.
-5. Replace the old `welcome-animation.js` or `titan-quick-intro.js` code with `titan-enter-mainpage-fix.js` (or copy its code into the script file actually linked from index.html).
-6. If CSS is needed, add `titan-enter-mainpage-fix.css` and link it in the page head.
-7. Remove other old intro scripts that also handle the ENTER button, because duplicate handlers can conflict.
-8. Commit changes, then reload the live page.
+IMPORTANT: This is a website source-file replacement, not an automatic update to your GitHub account.
 
-Important: this ZIP does not contain your original site's main content because it was not provided in the upload. If the live `index.html` has been overwritten with the preview, restoring the prior GitHub version is necessary; this script alone cannot recreate missing sections.
+HOW TO APPLY ON GITHUB (phone/tablet):
+1. Download and extract this ZIP.
+2. Open https://github.com/divyanshuxera-aa/TITAN-AI.FF
+3. Open index.html and tap the pencil/Edit icon.
+4. Select all old contents, paste the contents of this package's index.html, then commit changes.
+5. Add these two files from this package to the repository root: welcome-animation.css and welcome-animation.js (use Add file → Upload files). Keep your existing style.css and script.js unchanged.
+6. Wait a few minutes for GitHub Pages to redeploy, then open the website in a private/incognito tab or clear site data.
+
+The page performs only a local UID-format check. It does not connect to Garena, perform an unban, or upload the selected file.
