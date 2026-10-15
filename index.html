@@ -4,36 +4,58 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#001012">
-<title>TITAN FF — Community Arena</title>
+<title>TITAN.AI — Cyber Interface</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
+
 </head>
 <body>
 <main>
   <header class="topbar">
-    <div class="brand">TITAN <span>FF</span></div>
+    <div class="brand">TITAN <span>.AI</span></div>
     <div class="status"><span class="dot"></span>SYSTEM ONLINE</div>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">FREE FIRE COMMUNITY ARENA</div>
-    <h1>TITAN FF</h1>
-    <p>YOUR ARENA. YOUR SQUAD. YOUR NEXT VICTORY.</p>
+    <div class="eyebrow">ADVANCED CYBER ANALYSIS INTERFACE</div>
+    <h1>TITAN AI</h1>
+    <p>Direct terminal interface and local verification sequence stream.</p>
   </section>
 
-  <section class="panel" aria-labelledby="communityTitle">
-    <div class="panel-head"><span id="communityTitle">COMMUNITY ARENA</span><span class="protocol">TITAN FF HUB</span></div>
-    <p class="community-copy">Welcome to TITAN FF. Find community updates, team activities, and tournament announcements in one place.</p>
-    <div class="community-grid">
-      <article class="community-card"><h3>TOURNAMENTS</h3><p>Upcoming community matches and event announcements.</p></article>
-      <article class="community-card"><h3>COMMUNITY</h3><p>Stay connected with your squad and TITAN FF updates.</p></article>
-      <article class="community-card"><h3>TEAM PLAY</h3><p>Bring your squad together and prepare for your next match.</p></article>
-      <article class="community-card"><h3>ANNOUNCEMENTS</h3><p>Important community news and notices will appear here.</p></article>
+  <section class="panel" aria-labelledby="formTitle">
+    <div class="panel-head"><span id="formTitle">GAME CODE ANALYSIS</span><span class="protocol">ENTRY PROTOCOL</span></div>
+    <form id="analysisForm">
+      <label for="uid">TARGET FREE FIRE UID</label>
+      <input id="uid" type="text" inputmode="numeric" autocomplete="off" minlength="8" maxlength="12" pattern="[0-9]{8,12}" placeholder="Input 8 to 12 digit UID" required>
+      <label for="date">REGISTRY RESTRICTION DATE</label>
+      <input id="date" type="date" required>
+      <label for="file">MOCKUP PROTOCOL VERIFICATION (UPLOAD)</label>
+      <input id="file" type="file" accept=".txt,.png,.jpg,.jpeg,.pdf">
+      <button class="primary" id="runBtn" type="submit">INITIALIZE EXECUTION</button>
+    </form>
+    <div class="notice">DEMO MODE: This interface simulates a terminal sequence in your browser. It does not connect to game servers, check bans, identify IP addresses, or unban accounts.</div>
+    <div class="results hidden" id="results" aria-live="polite">
+      <h3>LOCAL SIMULATION STREAM</h3>
+      <div id="progressText" class="log">Preparing demo...</div>
+      <div class="progress-track"><div class="progress" id="progress"></div></div>
+      <div id="log" class="log"></div>
     </div>
-    <div class="notice">Community landing page only. API integration, UID submission, and player lookup have been removed.</div>
   </section>
 
-  <div id="titan-global-timer" role="timer" aria-live="off">
+  <section class="panel community">
+    <div class="panel-head"><span>COMMUNITY GATEWAY</span><span class="protocol">OPTIONAL DEMO</span></div>
+    <p>Generate a local demo token to preview the next screen. No account credentials are requested or transmitted.</p>
+    <label for="alias">OPERATOR ALIAS</label>
+    <input id="alias" type="text" maxlength="24" placeholder="Enter a display name">
+    <button class="primary" id="authBtn" type="button">SCAN &amp; AUTHENTICATE</button>
+    <div id="authResult" class="results hidden" aria-live="polite"></div>
+    <button class="primary hidden" id="monitorBtn" type="button">PROCEED TO MONITOR</button>
+  </section>
+
+  <footer class="footer">© 2026 TITAN.AI CYBER SYSTEMS<br>LOCAL DEMO • NO LIVE SERVER CONNECTION</footer>
+</main>
+
+<div id="titan-global-timer" role="timer" aria-live="off">
   <div class="timer-title">TITAN.AI · SHARED DEMO COUNTDOWN</div>
   <div class="timer-values">
     <div class="timer-unit"><div class="timer-number" id="titan-days">30</div><div class="timer-label">DAYS</div></div>
@@ -43,33 +65,6 @@
   </div>
   <div class="timer-note">Demo countdown only — the same fixed deadline is shown to every visitor. It does not control real account access.</div>
 </div>
-<script>
-// Fixed deadline: same for every visitor, independent of browser localStorage.
-// Change this ISO date to set a different shared end date.
-(function(){
-  const sharedDeadline = new Date('2026-11-14T23:59:59Z').getTime();
-  const ids = {days: document.getElementById('titan-days'), hours: document.getElementById('titan-hours'), minutes: document.getElementById('titan-minutes'), seconds: document.getElementById('titan-seconds')};
-  function updateSharedTimer(){
-    let remaining = Math.max(0, sharedDeadline - Date.now());
-    const days = Math.floor(remaining / 86400000); remaining %= 86400000;
-    const hours = Math.floor(remaining / 3600000); remaining %= 3600000;
-    const minutes = Math.floor(remaining / 60000); remaining %= 60000;
-    const seconds = Math.floor(remaining / 1000);
-    ids.days.textContent = String(days).padStart(2,'0');
-    ids.hours.textContent = String(hours).padStart(2,'0');
-    ids.minutes.textContent = String(minutes).padStart(2,'0');
-    ids.seconds.textContent = String(seconds).padStart(2,'0');
-  }
-  updateSharedTimer(); setInterval(updateSharedTimer,1000);
-})();
-</script>
 
-  <section class="panel community">
-    <div class="panel-head"><span>ABOUT TITAN FF</span><span class="protocol">COMMUNITY HUB</span></div>
-    <p class="community-copy">A dark cyber interface with cyan-green neon styling for the TITAN FF community.</p>
-  </section>
-
-  <footer class="footer">© <span id="currentYear">2026</span> TITAN FF<br>COMMUNITY ARENA</footer>
-</main>
 </body>
 </html>

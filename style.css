@@ -18,7 +18,7 @@ button{cursor:pointer;font-family:inherit;letter-spacing:1.4px;font-weight:bold;
 .hidden{display:none!important}.results{margin-top:16px;border:1px solid #07505b;border-radius:8px;padding:14px;background:#010d11}.results h3{font-size:11px;color:var(--cyan);margin:0 0 13px;letter-spacing:1.5px}.progress-track{height:5px;background:#06252b;border-radius:5px;overflow:hidden;margin:10px 0 14px}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .35s}.log{font-size:10px;line-height:1.9;color:#6ea7b3;overflow-wrap:anywhere}.log .ok{color:var(--green)}.community{margin-top:20px}.community p{font-size:10px;color:#72939b;line-height:1.7}.footer{text-align:center;margin:38px 0 0;color:#34545e;font-size:9px;letter-spacing:1.3px;line-height:1.8}.small-link{background:none;border:0;color:var(--cyan);text-decoration:underline;font-size:10px;padding:0}
 @media(max-width:420px){main{margin-top:12px}.hero{padding:22px 4px 20px}.panel{padding:15px}.panel-head{font-size:11px}.hero p{font-size:9px}}
 
-/* Original countdown styles retained unchanged. */
+/* Original countdown timer styles retained unchanged. */
 #titan-global-timer{margin:18px auto;padding:16px;max-width:720px;border:1px solid #00f5c8;border-radius:12px;background:rgba(0,245,200,.06);box-shadow:0 0 22px rgba(0,245,200,.08);text-align:center;color:#d9fff7}
 #titan-global-timer .timer-title{font-weight:800;letter-spacing:2px;color:#00f5c8;font-size:13px;margin-bottom:10px}
 #titan-global-timer .timer-values{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
@@ -26,9 +26,3 @@ button{cursor:pointer;font-family:inherit;letter-spacing:1.4px;font-weight:bold;
 #titan-global-timer .timer-number{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
 #titan-global-timer .timer-label{font-size:10px;letter-spacing:1px;opacity:.75;margin-top:3px}
 #titan-global-timer .timer-note{font-size:11px;opacity:.7;margin-top:10px}
-.community-copy{font-size:10px;color:#72939b;line-height:1.8;margin:0}
-.community-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
-.community-card{border:1px solid #07505b;border-radius:8px;padding:15px;background:#010d11}
-.community-card h3{font-size:11px;color:var(--cyan);margin:0 0 8px;letter-spacing:1.2px}
-.community-card p{font-size:10px;line-height:1.7;color:#72939b;margin:0}
-@media(max-width:360px){.community-grid{grid-template-columns:1fr}}
