@@ -1,74 +1,105 @@
-const $ = id => document.getElementById(id);
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+  const form = $('analysis-form');
+  const uid = $('uid');
+  const progress = $('progress');
+  const pct = $('progress-pct');
+  const ptext = $('progress-text');
+  const result = $('result');
+  const overlay = $('scan-overlay');
+  const scanPct = $('scan-pct');
+  const scanTitle = $('scan-title');
+  const scanStatus = $('scan-status');
+  const countdownSection = $('countdown-section');
+  const DURATION = 30 * 24 * 60 * 60 * 1000;
+  const STORE_KEY = 'titan_ai_countdown_start_v1';
+  let running = false;
 
-$('analysisForm').addEventListener('submit', async event => {
-  event.preventDefault();
-  const uid = $('uid').value.trim();
-  if (!/^\d{8,12}$/.test(uid)) {
-    $('uid').setCustomValidity('Please enter an 8 to 12 digit numeric UID.');
-    $('uid').reportValidity(); $('uid').setCustomValidity(''); return;
+  function updateClock() {
+    const now = new Date();
+    if ($('clock')) $('clock').textContent = new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false}).format(now) + ' IST';
+    if ($('live-date')) $('live-date').textContent = new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric'}).format(now);
+    if ($('year')) $('year').textContent = now.getFullYear();
   }
-  $('results').classList.remove('hidden');
-  $('runBtn').disabled = true;
-  $('progress').style.width = '0%';
-  $('log').textContent = '';
-  const lines = [
-    '[OK] Local input format validated.',
-    '[OK] Date field received.',
-    '[INFO] ' + ($('file').files[0] ? 'Selected file: ' + $('file').files[0].name : 'No optional file selected.'),
-    '[DEMO] No external server or account was contacted.',
-    '[COMPLETE] Browser-only demonstration finished.'
+  updateClock(); setInterval(updateClock, 1000);
+
+  function showCountdown() {
+    let start = 0;
+    try { start = Number(localStorage.getItem(STORE_KEY)); } catch (_) {}
+    if (!start || !Number.isFinite(start) || !countdownSection) return;
+    countdownSection.hidden = false;
+    const left = Math.max(0, start + DURATION - Date.now());
+    $('days').textContent = String(Math.floor(left / 86400000)).padStart(2,'0');
+    $('hours').textContent = String(Math.floor(left % 86400000 / 3600000)).padStart(2,'0');
+    $('minutes').textContent = String(Math.floor(left % 3600000 / 60000)).padStart(2,'0');
+    $('seconds').textContent = String(Math.floor(left % 60000 / 1000)).padStart(2,'0');
+    $('countdown-title').textContent = left ? '30-DAY SESSION WINDOW' : 'SESSION WINDOW ENDED';
+    $('countdown-progress').style.width = `${Math.max(0, Math.min(100, left / DURATION * 100))}%`;
+  }
+  showCountdown(); setInterval(showCountdown, 1000);
+
+  const steps = [
+    {at: 5, title:'INITIALIZING INTERFACE', status:'Preparing local validation sequence…'},
+    {at: 20, title:'CHECKING YOUR ID', status:'Checking your ID format locally in this browser…'},
+    {at: 42, title:'VERIFYING FORM FIELDS', status:'Confirming required fields are complete…'},
+    {at: 64, title:'RUNNING LOCAL CHECK', status:'This page does not connect to Free Fire game servers…'},
+    {at: 82, title:'30-DAY COUNTDOWN', status:'After 30 days, check your account status with official Free Fire support. An unban is not guaranteed.'},
+    {at: 100, title:'LOCAL CHECK COMPLETE', status:'UID format check completed successfully.'}
   ];
-  for (let i = 0; i < lines.length; i++) {
-    await sleep(450);
-    $('progress').style.width = ((i + 1) * 20) + '%';
-    $('progressText').textContent = 'Simulated sequence: ' + ((i + 1) * 20) + '%';
-    const row = document.createElement('div');
-    row.className = 'ok'; row.textContent = lines[i]; $('log').appendChild(row);
+
+  function runAnimation() {
+    running = true;
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('scan-running');
+    let index = 0;
+    const started = performance.now();
+    const total = 5200;
+    scanTitle.textContent = 'INITIALIZING INTERFACE';
+    scanStatus.textContent = 'Preparing local validation sequence…';
+    scanPct.textContent = '0%';
+    $('scan-progress').style.width = '0%';
+    const tick = (now) => {
+      const amount = Math.min(100, Math.floor((now - started) / total * 100));
+      while (index < steps.length && amount >= steps[index].at) {
+        scanTitle.textContent = steps[index].title;
+        scanStatus.textContent = steps[index].status;
+        index++;
+      }
+      scanPct.textContent = amount + '%';
+      $('scan-progress').style.width = amount + '%';
+      progress.style.width = amount + '%';
+      pct.textContent = amount + '%';
+      ptext.textContent = amount === 100 ? 'COMPLETE' : 'PROCESSING';
+      if (amount < 100) requestAnimationFrame(tick);
+      else setTimeout(() => {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('scan-running');
+        running = false;
+        result.textContent = '[ COMPLETE ] ID format checked locally. The 30-day timer is only a reminder; it cannot unban an account or guarantee an unban.';
+        try { if (!localStorage.getItem(STORE_KEY)) localStorage.setItem(STORE_KEY, String(Date.now())); } catch (_) {}
+        showCountdown();
+        result.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 700);
+    };
+    requestAnimationFrame(tick);
   }
-  $('runBtn').disabled = false;
-  $('runBtn').textContent = 'EXECUTION COMPLETE — RUN AGAIN';
-});
 
-$('authBtn').addEventListener('click', () => {
-  const alias = $('alias').value.trim();
-  if (!alias) { $('alias').focus(); $('alias').placeholder = 'Please enter an alias first'; return; }
-  const token = 'TITAN-DEMO-' + Math.random().toString(36).slice(2, 10).toUpperCase();
-  const result = $('authResult');
-  result.classList.remove('hidden');
-  result.replaceChildren();
-  const heading = document.createElement('h3'); heading.textContent = 'DEMO TOKEN GENERATED'; result.appendChild(heading);
-  const line = document.createElement('div'); line.className = 'log'; line.textContent = 'Operator: ' + alias; result.appendChild(line);
-  const tokenLine = document.createElement('div'); tokenLine.className = 'log ok'; tokenLine.textContent = token; result.appendChild(tokenLine);
-  const note = document.createElement('div'); note.className = 'notice'; note.textContent = 'This token is for visual testing only and is not a real login credential.'; result.appendChild(note);
-  $('monitorBtn').classList.remove('hidden');
-});
-$('monitorBtn').addEventListener('click', () => {
-  const results = $('results');
-  results.classList.remove('hidden');
-  $('progressText').textContent = 'Monitor preview opened.';
-  $('progress').style.width = '100%';
-  $('log').textContent = 'DEMO MONITOR ACTIVE — no live account or network data is accessed.';
-  window.scrollTo({top: results.getBoundingClientRect().top + window.scrollY - 20, behavior:'smooth'});
-});
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (running) return;
+    const value = uid.value.trim();
+    if (!/^\d{5,20}$/.test(value)) {
+      result.textContent = '[ ERROR ] Enter a UID containing 5–20 digits.';
+      uid.focus(); return;
+    }
+    result.textContent = '[ RUNNING ] Local UID format check in progress…';
+    runAnimation();
+  });
 
-/* ===== Original shared countdown timer logic (unchanged) ===== */
-
-// Fixed deadline: same for every visitor, independent of browser localStorage.
-// Change this ISO date to set a different shared end date.
-(function(){
-  const sharedDeadline = new Date('2026-11-14T23:59:59Z').getTime();
-  const ids = {days: document.getElementById('titan-days'), hours: document.getElementById('titan-hours'), minutes: document.getElementById('titan-minutes'), seconds: document.getElementById('titan-seconds')};
-  function updateSharedTimer(){
-    let remaining = Math.max(0, sharedDeadline - Date.now());
-    const days = Math.floor(remaining / 86400000); remaining %= 86400000;
-    const hours = Math.floor(remaining / 3600000); remaining %= 3600000;
-    const minutes = Math.floor(remaining / 60000); remaining %= 60000;
-    const seconds = Math.floor(remaining / 1000);
-    ids.days.textContent = String(days).padStart(2,'0');
-    ids.hours.textContent = String(hours).padStart(2,'0');
-    ids.minutes.textContent = String(minutes).padStart(2,'0');
-    ids.seconds.textContent = String(seconds).padStart(2,'0');
-  }
-  updateSharedTimer(); setInterval(updateSharedTimer,1000);
-})();
+  $('proof').addEventListener('change', () => {
+    const file = $('proof').files && $('proof').files[0];
+    if (file) result.textContent = '[ FILE SELECTED ] Reference image stays on this device and is not uploaded.';
+  });
+});
