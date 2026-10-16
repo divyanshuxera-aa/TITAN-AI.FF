@@ -1,5 +1,4 @@
-TITAN UNBAN SYSTEM - Live Code Stream visual demo
+TITAN UNBAN SYSTEM — FIXED UID VALIDATION + SCREENSHOT SELECTOR
 
-Upload index.html and background-music.mp3 to the root of your GitHub Pages repository. Replace the old index.html.
-
-The terminal lines are simulated visual effects only. They do not connect to Garena, detect IP/location/ISP, check a real ban status, or unban an account. Music starts after a user gesture due to browser autoplay restrictions.
+Replace the repository root index.html with this file, commit changes, then wait for GitHub Pages to redeploy.
+UID validation and screenshot preview are local-only. This page does not connect to Garena or unban accounts.
