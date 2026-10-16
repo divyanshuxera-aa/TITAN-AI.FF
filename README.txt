@@ -1,5 +1,4 @@
-TITAN UNBAN SYSTEM - Live Code Stream visual demo
+TITAN UNBAN SYSTEM — welcome screen demo
 
-Upload index.html and background-music.mp3 to the root of your GitHub Pages repository. Replace the old index.html.
-
-The terminal lines are simulated visual effects only. They do not connect to Garena, detect IP/location/ISP, check a real ban status, or unban an account. Music starts after a user gesture due to browser autoplay restrictions.
+Open index.html in a browser or upload index.html to the root of your GitHub Pages repository.
+The visual layout is kept close to the supplied screenshot; the text is accurate and does not falsely claim a real Garena connection or guaranteed unban.
