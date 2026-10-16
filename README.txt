@@ -1,4 +1,5 @@
-TITAN UNBAN SYSTEM — welcome screen demo
+TITAN UNBAN SYSTEM — welcome page
 
-Open index.html in a browser or upload index.html to the root of your GitHub Pages repository.
-The visual layout is kept close to the supplied screenshot; the text is accurate and does not falsely claim a real Garena connection or guaranteed unban.
+Upload index.html to the root of your GitHub Pages repository to use this welcome page.
+This is a standalone welcome-page file, not a full-site replacement. Keep a backup of your current website files before replacing anything.
+The page does not claim a real Garena connection unless you have implemented and verified an official integration.
