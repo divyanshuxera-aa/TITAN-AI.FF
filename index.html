@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TITAN UNBAN SYSTEM — Cyber Interface</title>
 <style>
-:root{--bg:#060a12;--panel:#0b1420;--line:#17384a;--cyan:#39f5ff;--green:#5dffad;--muted:#91a9b8;--red:#ff6d8c}
+:root{--bg:#060a12;--panel:#0b1420;--line:#17384a;--cyan:#39f5ff;--green:#5dffad;--muted:#91a9b8}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#10263a 0,#060a12 55%);color:#e8fbff;font:15px/1.5 system-ui,Segoe UI,Arial,sans-serif}
 header{padding:22px 5vw;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;background:#060a12cc}
 .brand{font-weight:900;letter-spacing:.18em;color:var(--cyan)}.pill{border:1px solid #1b6559;color:var(--green);padding:5px 10px;border-radius:999px;font-size:12px}
@@ -15,70 +14,73 @@ h1{font-size:clamp(32px,6vw,62px);line-height:1.02;margin:8px 0 14px;letter-spac
 .card{background:linear-gradient(145deg,#0d1a28,#08101a);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 10px 36px #0004}
 h2{font-size:16px;letter-spacing:.08em;margin:0 0 14px;color:var(--cyan)}label{display:block;color:var(--muted);margin:12px 0 6px}
 input{width:100%;padding:12px;border-radius:8px;background:#050a10;border:1px solid #24475b;color:#fff;font:inherit;outline:none}input:focus{border-color:var(--cyan)}
-button{margin-top:15px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--cyan);color:#061016;font-weight:900;letter-spacing:.08em;cursor:pointer}button:hover{filter:brightness(1.12)}
-.note{font-size:12px;color:var(--muted);margin-top:12px}.terminal{font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--green);background:#03080c;border:1px solid #174a43;border-radius:10px;padding:14px;min-height:200px;overflow-wrap:anywhere}
+button{margin-top:15px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--cyan);color:#061016;font-weight:900;letter-spacing:.08em;cursor:pointer}button:hover{filter:brightness(1.12)}button:disabled{opacity:.55;cursor:wait}
+.note{font-size:12px;color:var(--muted);margin-top:12px}.terminal{font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--green);background:#03080c;border:1px solid #174a43;border-radius:10px;padding:14px;min-height:200px;max-height:320px;overflow:auto;overflow-wrap:anywhere}
 .bar{height:6px;background:#122432;border-radius:99px;margin-top:12px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .35s}
-.status{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:8px}
-.warning{border-left:3px solid #e7b94d;padding:10px 12px;background:#241e0b;color:#f8dfa0;font-size:12px;margin-top:18px}
-footer{padding:18px;text-align:center;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
-a{color:var(--cyan)}.logline{animation:fade .2s ease}@keyframes fade{from{opacity:.2;transform:translateY(2px)}to{opacity:1;transform:none}}
+.status{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:8px}.warning{border-left:3px solid #e7b94d;padding:10px 12px;background:#241e0b;color:#f8dfa0;font-size:12px;margin-top:18px}
+footer{padding:18px;text-align:center;border-top:1px solid var(--line);color:var(--muted);font-size:12px}a{color:var(--cyan)}#preview{display:none;max-width:100%;max-height:180px;border-radius:8px;margin-top:10px;border:1px solid var(--line)}
 </style>
 </head>
 <body>
 <header><div class="brand">T. / TITAN SYSTEM</div><div class="pill">● SYSTEM ONLINE · LOCAL MODE</div></header>
 <main>
-  <div class="eyebrow">// PLAYER SYSTEMS · COMMUNITY TERMINAL</div>
-  <h1>TITAN.AI</h1>
-  <p class="sub">Advanced cyber-style interface with animated local UID format validation and a live-looking terminal display.</p>
-  <div class="grid">
-    <section class="card">
-      <h2>01 / GAME CODE ANALYSIS</h2>
-      <form id="uidForm">
-        <label for="uid">Target Free Fire UID</label>
-        <input id="uid" inputmode="numeric" autocomplete="off" placeholder="Enter your numeric UID" maxlength="20" required>
-        <label for="date">Registry date (optional)</label>
-        <input id="date" type="date">
-        <button type="submit">INITIALIZE ANALYSIS ↗</button>
-      </form>
-      <div class="bar"><div class="fill" id="fill"></div></div>
-      <div class="status"><span id="status">SYSTEM STANDBY</span><span id="percent">0%</span></div>
-      <p class="note">This checks only the UID number format in your browser. It does not connect to Garena or change an account's ban/status.</p>
-    </section>
-    <section class="card">
-      <h2>LIVE CODE STREAM · SIMULATION</h2>
-      <div class="terminal" id="terminal" aria-live="polite">
-        <div class="logline">[ OK ] Local interface ready.</div>
-        <div class="logline">[ INFO ] Terminal display initialized.</div>
-        <div class="logline">[ NOTE ] No game-server connection.</div>
-        <div class="logline">[ READY ] Enter a UID to validate its format.</div>
-      </div>
-      <p class="note">Terminal messages are visual simulation only; no private player data is accessed.</p>
-    </section>
-    <section class="card">
-      <h2>02 / MODULE STATUS</h2>
-      <p>● <b>UID VALIDATION</b><br><span class="note">Checks whether the entered UID contains 5–20 digits.</span></p>
-      <p>● <b>LOCAL SEQUENCE</b><br><span class="note">Animated browser-only validation sequence.</span></p>
-      <p>● <b>ACCOUNT SECURITY</b><br><span class="note">Never enter your password or verification code on unofficial pages.</span></p>
-    </section>
-    <section class="card">
-      <h2>03 / ACCOUNT SAFETY</h2>
-      <p class="sub">TITAN is a fan-made interface. It cannot unban accounts or verify real account status.</p>
-      <p><a href="https://ff.garena.com/" target="_blank" rel="noopener noreferrer">OFFICIAL FREE FIRE SITE ↗</a></p>
-      <div class="warning">Account unban is not verified or guaranteed here. For account issues, use official Free Fire support channels only.</div>
-    </section>
-  </div>
-</main>
+<div class="eyebrow">// PLAYER SYSTEMS · COMMUNITY TERMINAL</div><h1>TITAN.AI</h1>
+<p class="sub">Cyber-style interface with local UID format validation and optional screenshot preview.</p>
+<div class="grid">
+<section class="card"><h2>01 / GAME CODE ANALYSIS</h2>
+<form id="uidForm">
+<label for="uid">Target Free Fire UID</label>
+<input id="uid" inputmode="numeric" autocomplete="off" placeholder="Enter your numeric UID" maxlength="20" required>
+<label for="date">Registry date (optional)</label><input id="date" type="date">
+<label for="screenshot">Select screenshot (optional)</label><input id="screenshot" type="file" accept="image/*">
+<img id="preview" alt="Selected screenshot preview">
+<button id="submitBtn" type="submit">INITIALIZE ANALYSIS ↗</button>
+</form>
+<div class="bar"><div class="fill" id="fill"></div></div><div class="status"><span id="status">SYSTEM STANDBY</span><span id="percent">0%</span></div>
+<p class="note">UID check validates only the number format in this browser. Screenshot stays on your device and is not uploaded. This page does not connect to Garena or change account status.</p></section>
+<section class="card"><h2>LIVE CODE STREAM · SIMULATION</h2><div class="terminal" id="terminal" aria-live="polite">
+<div>[ OK ] Local interface ready.</div><div>[ INFO ] Terminal display initialized.</div><div>[ NOTE ] No game-server connection.</div><div>[ READY ] Enter a UID to validate its format.</div>
+</div><p class="note">Visual simulation only; no private player data is accessed.</p></section>
+<section class="card"><h2>02 / MODULE STATUS</h2>
+<p>● <b>UID VALIDATION</b><br><span class="note">Checks for 5–20 digits.</span></p>
+<p>● <b>SCREENSHOT PREVIEW</b><br><span class="note">Optional image preview runs locally in your browser.</span></p>
+<p>● <b>ACCOUNT SECURITY</b><br><span class="note">Never enter your password or verification code on unofficial pages.</span></p></section>
+<section class="card"><h2>03 / ACCOUNT SAFETY</h2><p class="sub">TITAN is a fan-made interface. It cannot unban accounts or verify real account status.</p>
+<p><a href="https://ff.garena.com/" target="_blank" rel="noopener noreferrer">OFFICIAL FREE FIRE SITE ↗</a></p>
+<div class="warning">Account unban is not verified or guaranteed here. Use official support for account issues.</div></section>
+</div></main>
 <footer>© TITAN.AI · LOCAL VALIDATION INTERFACE · NO GAME-SERVER CONNECTION</footer>
 <script>
-const form=document.getElementById('uidForm'), terminal=document.getElementById('terminal'), fill=document.getElementById('fill'), statusEl=document.getElementById('status'), percent=document.getElementById('percent');
-function log(msg){const d=document.createElement('div');d.className='logline';d.textContent=msg;terminal.appendChild(d);while(terminal.children.length>30)terminal.removeChild(terminal.firstChild);terminal.scrollTop=terminal.scrollHeight;}
+const form=document.getElementById('uidForm');
+const terminal=document.getElementById('terminal');
+const fill=document.getElementById('fill');
+const statusEl=document.getElementById('status');
+const percent=document.getElementById('percent');
+const uidInput=document.getElementById('uid');
+const screenshotInput=document.getElementById('screenshot');
+const preview=document.getElementById('preview');
+function log(msg){const d=document.createElement('div');d.textContent=msg;terminal.appendChild(d);while(terminal.children.length>30)terminal.removeChild(terminal.firstChild);terminal.scrollTop=terminal.scrollHeight;}
+screenshotInput.addEventListener('change',()=>{
+ const file=screenshotInput.files && screenshotInput.files[0];
+ if(!file){preview.removeAttribute('src');preview.style.display='none';return;}
+ if(!file.type.startsWith('image/')){log('[ ERROR ] Please select an image file.');screenshotInput.value='';return;}
+ const reader=new FileReader();
+ reader.onload=()=>{preview.src=reader.result;preview.style.display='block';log('[ OK ] Screenshot selected locally: '+file.name);};
+ reader.readAsDataURL(file);
+});
 form.addEventListener('submit',e=>{
- e.preventDefault(); const uid=document.getElementById('uid').value.trim();
- if(!/^\\d{5,20}$/.test(uid)){log('[ ERROR ] UID format invalid: enter 5–20 digits.');statusEl.textContent='FORMAT ERROR';fill.style.width='0%';percent.textContent='0%';return;}
- form.querySelector('button').disabled=true;statusEl.textContent='RUNNING LOCAL CHECK';fill.style.width='0%';percent.textContent='0%';log('[ INIT ] Local UID format check started.');
+ e.preventDefault();
+ const uid=uidInput.value.trim();
+ // Correct regex: digits only, length 5 to 20.
+ if(!/^\d{5,20}$/.test(uid)){
+   log('[ ERROR ] UID format invalid: enter 5–20 digits only.');
+   statusEl.textContent='FORMAT ERROR';fill.style.width='0%';percent.textContent='0%';return;
+ }
+ const btn=document.getElementById('submitBtn');btn.disabled=true;
+ statusEl.textContent='RUNNING LOCAL CHECK';fill.style.width='0%';percent.textContent='0%';
+ log('[ INIT ] Local UID format check started.');
  const steps=['[ OK ] Input received locally.','[ CHECK ] Numeric format verified.','[ NOTE ] Garena server not contacted.','[ COMPLETE ] Local format check finished.'];
- let i=0;const timer=setInterval(()=>{i++;fill.style.width=(i/steps.length*100)+'%';percent.textContent=Math.round(i/steps.length*100)+'%';log(steps[i-1]);if(i===steps.length){clearInterval(timer);statusEl.textContent='LOCAL CHECK COMPLETE';form.querySelector('button').disabled=false;}},500);
+ let i=0;const timer=setInterval(()=>{i++;fill.style.width=(i/steps.length*100)+'%';percent.textContent=Math.round(i/steps.length*100)+'%';log(steps[i-1]);if(i===steps.length){clearInterval(timer);statusEl.textContent='LOCAL CHECK COMPLETE';btn.disabled=false;}},500);
 });
 </script>
-</body>
-</html>
+</body></html>
