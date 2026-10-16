@@ -1,4 +1,4 @@
-TITAN UNBAN SYSTEM ACTIVATED — local visual demo
+TITAN UNBAN SYSTEM — FIXED UID VALIDATION + SCREENSHOT SELECTOR
 
-Replace your repository index.html with this file and commit changes.
-This is a local UI animation/reminder only; it does not connect to Garena, change account status, or guarantee an unban.
+Replace the repository root index.html with this file, commit changes, then wait for GitHub Pages to redeploy.
+UID validation and screenshot preview are local-only. This page does not connect to Garena or unban accounts.
