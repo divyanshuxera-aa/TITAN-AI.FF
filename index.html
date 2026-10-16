@@ -36,9 +36,16 @@
 
 #live-dashboard #countdown-section{display:block!important;margin:0;width:100%;padding-bottom:14px}#live-dashboard #countdown-section[hidden]{display:none!important}#live-dashboard .countdown-head{padding:14px;display:grid;gap:12px}#live-dashboard .countdown-head h2{font:700 17px Orbitron;color:#50f3df}#live-dashboard .timer{display:flex;justify-content:space-around;gap:8px}#live-dashboard .timer div{text-align:center}#live-dashboard .timer b{display:block;font:700 22px Orbitron;color:#ff5368}#live-dashboard .timer small{font:600 9px Orbitron;color:#8da5b5}#live-dashboard .countdown-track{margin:0 14px 10px}
 [hidden]{display:none!important}
+
+.welcome-screen{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:22px;background:radial-gradient(ellipse at center,#102c35f5,#020609f8 72%);backdrop-filter:blur(8px)}.welcome-box{width:min(680px,100%);padding:clamp(25px,6vw,48px);text-align:center;border:1px solid #4cf5e4;background:linear-gradient(145deg,#0c1a22f5,#03080cf7);box-shadow:0 0 55px #00f5dc20;position:relative}.welcome-box:before,.welcome-box:after{content:"";position:absolute;width:25px;height:25px;border-color:#56f6e6;border-style:solid}.welcome-box:before{top:-1px;left:-1px;border-width:2px 0 0 2px}.welcome-box:after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}.welcome-tag{font:600 10px Orbitron;letter-spacing:3px;color:#56f6e6}.welcome-box h1{font-size:clamp(25px,6vw,47px);line-height:1.25;margin:20px 0 14px}.welcome-box p{font:500 15px/1.7 monospace;color:#b6cbd0}.welcome-box .primary{margin-top:15px}.welcome-disclaimer{font:500 11px/1.6 monospace!important;color:#8ba2a8!important;margin-top:18px}.music-toggle{position:fixed;right:14px;bottom:14px;z-index:50;border:1px solid #56f6e6;background:#071116;color:#56f6e6;padding:12px 15px;font:700 10px Orbitron;letter-spacing:1px;cursor:pointer;box-shadow:0 0 20px #56f6e622}.welcome-screen[hidden]{display:none!important}
 </style>
 </head>
 <body>
+  <div class="welcome-screen" id="welcome-screen" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="welcome-box"><div class="welcome-tag">// TITAN SYSTEM · WELCOME GATE</div><h1 id="welcome-title">WELCOME TO <span style="color:#56f6e6">TITAN UNBAN SYSTEM</span></h1><p>Welcome, player! Yahan apni Free Fire ID ka local demo check kar sakte ho. ✨</p><p class="welcome-disclaimer">Important: Ye fan-made visual demo hai. Website Garena se connect nahi hoti aur account ko unban karne ki guarantee nahi deti.</p><button class="primary" id="enter-site" type="button">ENTER SYSTEM <span>↗</span></button><p class="welcome-disclaimer">Background music: uploaded video audio · sound browser settings par depend karega.</p></div>
+  </div>
+  <audio id="bg-music" src="background-music.mp3" loop preload="auto"></audio><button class="music-toggle" id="music-toggle" type="button" aria-label="Toggle background music">♫ MUSIC: OFF</button>
+
   <div class="scanlines"></div>
   <div class="scan-overlay" id="scan-overlay" aria-hidden="true" role="status" aria-live="polite">
     <div class="scan-core"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core-mark">T<span>.</span></div><div class="core-caption">TITAN SYSTEM</div></div>
@@ -62,12 +69,26 @@
       <div style="text-align:center;padding:18px 12px 22px;border:1px solid #143a40;background:linear-gradient(180deg,#061317,#03090b)"><div class="dash-caption" style="color:#50f3df;letter-spacing:3px">ADVANCED CYBER ANALYSIS INTERFACE · VISUAL DEMO</div><h2 style="font:800 clamp(22px,5vw,38px) Orbitron;letter-spacing:2px;margin:16px 0 8px;color:#eaffff;text-shadow:0 0 18px #48f4e24c">TITAN UNBAN SYSTEM <span style="color:#48f4e2">ACTIVATED</span></h2><p style="font:500 13px/1.6 monospace;color:#88a7a8;margin:0">Local interface animation and simulated terminal output. No real account status is accessed.</p></div>
       <div class="dash-card"><div class="dash-title"><span>PLAYER IDENTITY / LOCAL DISPLAY</span><em>LIVE</em></div><div class="dash-body"><div class="amber">&gt; SYSTEM MESSAGE</div><div class="name-chip" id="player-name" style="font-size:clamp(17px,3.5vw,25px)">TITAN UNBAN SYSTEM ACTIVATED</div><div class="green">&gt; LOCAL DEMO SESSION INITIALIZED</div><div>&gt; DEVICE CLOCK: <span id="dash-clock">--:--:--</span></div></div></div>
       <div class="dash-grid">
-        <div class="dash-card"><div class="dash-title"><span>LIVE CODE STREAM</span><em>VISUAL SIMULATION</em></div><div class="dash-body" id="live-log"><div class="green">[ OK ] Local interface ready.</div><div>[ INFO ] Display name loaded.</div><div class="amber">[ NOTE ] No game-server connection.</div></div></div>
+        <div class="dash-card"><div class="dash-title"><span>LIVE CODE STREAM</span><em>SIMULATION ONLY</em></div><div class="dash-body" id="live-log"><div class="green">[ OK ] Local interface ready.</div><div>[ INFO ] Display name loaded.</div><div class="amber">[ NOTE ] No game-server connection.</div></div></div>
         <div class="dash-card"><div class="dash-title"><span>LOCAL SESSION STATUS</span><em>LOCAL</em></div><div class="dash-body"><div class="green">[ COMPLETE ] Local UID format check finished.</div><div>[ ACTIVE ] 30-day reminder started after animation.</div><div class="amber">[ NOTICE ] Account unban is not verified or guaranteed.</div></div><div class="dash-timer"><small>30-DAY REMINDER · TIME LEFT</small><strong id="dash-count">30D 00H 00M 00S</strong></div></div>
       </div><div class="dash-caption">TITAN UNBAN SYSTEM ACTIVATED · LOCAL VISUAL DEMO ONLY — NO GAME-SERVER CONNECTION</div>
     </section>
   </main><footer>© <span id="year"></span> TITAN.AI <span class="foot-status">• LOCAL VALIDATION SYSTEM</span></footer><script>
 document.addEventListener('DOMContentLoaded', () => {
+  const welcome = document.getElementById('welcome-screen');
+  const enterButton = document.getElementById('enter-site');
+  const music = document.getElementById('bg-music');
+  const musicToggle = document.getElementById('music-toggle');
+  let musicOn = false;
+  async function startMusic(){
+    try { await music.play(); musicOn = true; musicToggle.textContent = '♫ MUSIC: ON'; }
+    catch(e) { musicOn = false; musicToggle.textContent = '♫ TAP FOR MUSIC'; }
+  }
+  enterButton.addEventListener('click', async () => { welcome.hidden = true; await startMusic(); });
+  musicToggle.addEventListener('click', async () => {
+    if (musicOn && !music.paused) { music.pause(); musicOn = false; musicToggle.textContent = '♫ MUSIC: OFF'; }
+    else { await startMusic(); }
+  });
   const $ = (id) => document.getElementById(id);
   const form = $('analysis-form');
   const uid = $('uid');
@@ -85,10 +106,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid');
   const community = document.querySelector('.community');
   const dashLogs = $('live-log');
+  // All terminal messages below are visual simulation only; they are not returned by Garena.
   const logLines = [
-    '[ OK ] TITAN interface modules initialized.', '[ INFO ] Displaying TITAN UNBAN SYSTEM ACTIVATED.',
-    '[ OK ] Local timer heartbeat active.', '[ NOTE ] No game-server connection.',
-    '[ SIM ] Rendering animated terminal output.', '[ OK ] Responsive layout active.'
+    '[SIMULATION] LIVE CODE STREAM',
+    '[SIMULATION] BAN TO UNBAN SEQUENCE — visual effect only',
+    '[STATUS CHECK - DEMO] CURRENT STATE: UNKNOWN | No official status API connected',
+    '[STATUS TRANSITION - DEMO] BANNED ----> PENDING_UNBAN_RESTORATION (illustrative only)',
+    '[HEX INJECT - DEMO] 806A 7E51 C698 :: RE-APPLYING UNBAN TICKET (visual text only)',
+    '[OVERRIDE - DEMO] Simulated unban script sequence -> Memory Address:[0xE0F6032C]',
+    '[STATUS TRANSITION - DEMO] BANNED ----> PENDING_UNBAN_RESTORATION',
+    '[GARENA GATEWAY - DEMO] Gateway verification in progress... no gateway request sent',
+    '[STATUS CHECK - DEMO] CURRENT STATE: UNKNOWN | No game-server connection',
+    '[PATCH - DEMO] IS_BANNED=1 -> IS_BANNED=0 ... SIMULATED; no account changes made',
+    '[DAEMON - DEMO] Illustrative 10-day synchronization timer (not an actual token)',
+    '[ALERT - DEMO] Security bot message is simulated; no proxy or bypass used',
+    '[SYNC - DEMO] Restoration token persistent across cloud nodes (fictional log)',
+    '[STATUS CHECK - DEMO] No real ban/unban result has been verified',
+    '[DETECTED CLIENT IP ADDRESS] NOT COLLECTED — privacy-safe demo',
+    '[DETECTED USER LOGIN LOCATION] SAMPLE ONLY: Kolkata, West Bengal, India (not detected)',
+    '[ACTIVE ISP / NETWORK PROVIDER] SAMPLE ONLY: Jio / Airtel Broadband (not detected)',
+    '[SESSION AUTHENTICATION TIMESTAMP] Local device clock only; no login authentication',
+    '[INFO] To verify an actual ban, use official Garena support.',
+    '[OK] TITAN interface running in local visual demo mode.'
   ];
   let logIndex = 0;
   setInterval(() => {

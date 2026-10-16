@@ -1,5 +1,5 @@
-TITAN UNBAN SYSTEM ACTIVATED — interface update
+TITAN UNBAN SYSTEM - Live Code Stream visual demo
 
-Upload this index.html to the root of your GitHub Pages repository, replacing the old index.html, then commit changes.
+Upload index.html and background-music.mp3 to the root of your GitHub Pages repository. Replace the old index.html.
 
-This is a local visual demo: terminal lines are simulated, it does not connect to Free Fire servers, check real account status, or unban an account. The 30-day timer is only a local reminder.
+The terminal lines are simulated visual effects only. They do not connect to Garena, detect IP/location/ISP, check a real ban status, or unban an account. Music starts after a user gesture due to browser autoplay restrictions.
