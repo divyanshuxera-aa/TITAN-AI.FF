@@ -1,4 +1,8 @@
-TITAN UNBAN SYSTEM — FIXED UID VALIDATION + SCREENSHOT SELECTOR
+TITAN website background music
 
-Replace the repository root index.html with this file, commit changes, then wait for GitHub Pages to redeploy.
-UID validation and screenshot preview are local-only. This page does not connect to Garena or unban accounts.
+Music extracted from your uploaded video.
+
+To make it repeat continuously while visitors stay on the website, the website's HTML must use:
+<audio id="bgMusic" src="background-music.mp3" autoplay loop></audio>
+
+Note: Mobile browsers may require the visitor to tap the page/button before audio can start. Keep background-music.mp3 beside index.html in your website repository.
