@@ -1,6 +1,5 @@
-TITAN FF website files
+TITAN UNBAN SYSTEM - Live Code Stream visual demo
 
-Included: index.html, style.css, script.js.
-API integration, UID submit form, and player lookup have been removed.
-The original countdown timer markup, styles, and JavaScript are preserved unchanged.
-Upload all three website files to the same folder/repository root.
+Upload index.html and background-music.mp3 to the root of your GitHub Pages repository. Replace the old index.html.
+
+The terminal lines are simulated visual effects only. They do not connect to Garena, detect IP/location/ISP, check a real ban status, or unban an account. Music starts after a user gesture due to browser autoplay restrictions.
