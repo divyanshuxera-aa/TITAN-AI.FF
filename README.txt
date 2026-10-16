@@ -1,5 +1,6 @@
-TITAN UNBAN SYSTEM — welcome page
+TITAN FF website files
 
-Upload index.html to the root of your GitHub Pages repository to use this welcome page.
-This is a standalone welcome-page file, not a full-site replacement. Keep a backup of your current website files before replacing anything.
-The page does not claim a real Garena connection unless you have implemented and verified an official integration.
+Included: index.html, style.css, script.js.
+API integration, UID submit form, and player lookup have been removed.
+The original countdown timer markup, styles, and JavaScript are preserved unchanged.
+Upload all three website files to the same folder/repository root.
