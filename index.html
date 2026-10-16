@@ -1,75 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#001012">
-<title>TITAN FF — Community Arena</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a10"><meta name="description" content="TITAN.AI cyber gaming interface">
+  <title>TITAN.AI — Cyber Interface</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main>
-  <header class="topbar">
-    <div class="brand">TITAN <span>FF</span></div>
-    <div class="status"><span class="dot"></span>SYSTEM ONLINE</div>
-  </header>
-
-  <section class="hero">
-    <div class="eyebrow">FREE FIRE COMMUNITY ARENA</div>
-    <h1>TITAN FF</h1>
-    <p>YOUR ARENA. YOUR SQUAD. YOUR NEXT VICTORY.</p>
-  </section>
-
-  <section class="panel" aria-labelledby="communityTitle">
-    <div class="panel-head"><span id="communityTitle">COMMUNITY ARENA</span><span class="protocol">TITAN FF HUB</span></div>
-    <p class="community-copy">Welcome to TITAN FF. Find community updates, team activities, and tournament announcements in one place.</p>
-    <div class="community-grid">
-      <article class="community-card"><h3>TOURNAMENTS</h3><p>Upcoming community matches and event announcements.</p></article>
-      <article class="community-card"><h3>COMMUNITY</h3><p>Stay connected with your squad and TITAN FF updates.</p></article>
-      <article class="community-card"><h3>TEAM PLAY</h3><p>Bring your squad together and prepare for your next match.</p></article>
-      <article class="community-card"><h3>ANNOUNCEMENTS</h3><p>Important community news and notices will appear here.</p></article>
-    </div>
-    <div class="notice">Community landing page only. API integration, UID submission, and player lookup have been removed.</div>
-  </section>
-
-  <div id="titan-global-timer" role="timer" aria-live="off">
-  <div class="timer-title">TITAN.AI · SHARED DEMO COUNTDOWN</div>
-  <div class="timer-values">
-    <div class="timer-unit"><div class="timer-number" id="titan-days">30</div><div class="timer-label">DAYS</div></div>
-    <div class="timer-unit"><div class="timer-number" id="titan-hours">00</div><div class="timer-label">HOURS</div></div>
-    <div class="timer-unit"><div class="timer-number" id="titan-minutes">00</div><div class="timer-label">MINUTES</div></div>
-    <div class="timer-unit"><div class="timer-number" id="titan-seconds">00</div><div class="timer-label">SECONDS</div></div>
-  </div>
-  <div class="timer-note">Demo countdown only — the same fixed deadline is shown to every visitor. It does not control real account access.</div>
-</div>
-<script>
-// Fixed deadline: same for every visitor, independent of browser localStorage.
-// Change this ISO date to set a different shared end date.
-(function(){
-  const sharedDeadline = new Date('2026-11-14T23:59:59Z').getTime();
-  const ids = {days: document.getElementById('titan-days'), hours: document.getElementById('titan-hours'), minutes: document.getElementById('titan-minutes'), seconds: document.getElementById('titan-seconds')};
-  function updateSharedTimer(){
-    let remaining = Math.max(0, sharedDeadline - Date.now());
-    const days = Math.floor(remaining / 86400000); remaining %= 86400000;
-    const hours = Math.floor(remaining / 3600000); remaining %= 3600000;
-    const minutes = Math.floor(remaining / 60000); remaining %= 60000;
-    const seconds = Math.floor(remaining / 1000);
-    ids.days.textContent = String(days).padStart(2,'0');
-    ids.hours.textContent = String(hours).padStart(2,'0');
-    ids.minutes.textContent = String(minutes).padStart(2,'0');
-    ids.seconds.textContent = String(seconds).padStart(2,'0');
-  }
-  updateSharedTimer(); setInterval(updateSharedTimer,1000);
-})();
-</script>
-
-  <section class="panel community">
-    <div class="panel-head"><span>ABOUT TITAN FF</span><span class="protocol">COMMUNITY HUB</span></div>
-    <p class="community-copy">A dark cyber interface with cyan-green neon styling for the TITAN FF community.</p>
-  </section>
-
-  <footer class="footer">© <span id="currentYear">2026</span> TITAN FF<br>COMMUNITY ARENA</footer>
-</main>
-</body>
-</html>
+  <div class="scanlines"></div>
+  <div class="scan-overlay" id="scan-overlay" aria-hidden="true" role="status" aria-live="polite">
+    <div class="scan-core"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core-mark">T<span>.</span></div><div class="core-caption">TITAN SYSTEM</div></div>
+    <div class="scan-copy"><div class="kicker">// SECURE LOCAL SEQUENCE</div><h2 id="scan-title">INITIALIZING INTERFACE</h2><p id="scan-status">Preparing local validation sequence…</p><div class="scan-meter"><div id="scan-progress"></div></div><div class="scan-numbers"><span>PROCESS STATUS</span><b id="scan-pct">0%</b></div><p class="scan-foot">LOCAL UID FORMAT CHECK · NO GAME SERVER CONNECTION</p></div>
+  </div><header class="topbar"><a class="brand" href="#top"><span class="logo">T</span><span><b>TITAN<span>.AI</span></b><small>ADVANCED CYBER INTERFACE</small></span></a><div class="system"><i></i><span>SYSTEM ONLINE</span><time id="clock">--:--:-- IST</time><time id="live-date">-- --- ----</time></div></header>
+  <main id="top">
+    <section class="hero"><div class="kicker">// PLAYER SYSTEMS · COMMUNITY TERMINAL</div><h1>TITAN<span>.AI</span></h1><p class="intro">Cyber interface with animated local UID format validation.</p>
+      <div class="panel"><div class="panel-title"><span>01 / GAME CODE ANALYSIS ENTRY PROTOCOL</span><span class="status">READY</span></div>
+        <form id="analysis-form"><label for="uid">Target Free Fire UID</label><input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="Enter your numeric UID" minlength="5" maxlength="20" pattern="[0-9]{5,20}" required>
+          <div class="two"><div><label for="registry">Registry date (optional)</label><input id="registry" type="date"></div><div><label for="proof">Reference image (optional)</label><input id="proof" type="file" accept="image/*"></div></div>
+          <button class="primary" type="submit">INITIALIZE ANALYSIS <span>↗</span></button>
+        </form><div class="progress-wrap"><div class="progress-label"><span id="progress-text">SYSTEM STANDBY</span><span id="progress-pct">0%</span></div><div class="track"><div id="progress"></div></div></div><p id="result" class="result" role="status" aria-live="polite">[ READY ] Enter a UID to validate its format.</p>
+        <p class="note">UID CHECK: This page validates the number format in your browser. It does not connect to Garena, access private data, or change account bans/status.</p>
+      </div>
+    </section>
+    <section class="countdown panel" id="countdown-section" hidden><div class="panel-title"><span>LIVE SYSTEM WINDOW</span><span class="status">30 DAY TIMER</span></div><div class="countdown-head"><div><div class="kicker">// LIVE DATE & COUNTDOWN</div><h2 id="countdown-title">30 DAYS REMAINING</h2><p class="note">The 30-day countdown begins after analysis completes.</p></div><div class="timer" aria-live="polite"><div><b id="days">30</b><small>DAYS</small></div><div><b id="hours">00</b><small>HOURS</small></div><div><b id="minutes">00</b><small>MIN</small></div><div><b id="seconds">00</b><small>SEC</small></div></div></div><div class="track countdown-track"><div id="countdown-progress"></div></div></section>
+    <section class="grid"><article class="tile"><span>02 / MODULE</span><h2>UID VALIDATION</h2><p>Checks that the entered UID contains 5–20 digits.</p><b class="module-state">● ACTIVE</b></article><article class="tile"><span>03 / MODULE</span><h2>LOCAL SEQUENCE</h2><p>Displays an animated local validation sequence after the form is submitted.</p><b class="module-state">● ACTIVE</b></article><article class="tile"><span>04 / MODULE</span><h2>ACCOUNT SECURITY</h2><p>Never enter your password or verification code on unofficial pages.</p><b class="module-state">● STANDBY</b></article></section>
+    <section class="community"><div><div class="kicker">// COMMUNITY GATEWAY</div><h2>ENTER THE <span>TITAN GRID.</span></h2><p>Connect with your squad. Play fair. Keep your account secure.</p></div><a class="secondary" href="https://ff.garena.com/" target="_blank" rel="noopener noreferrer">OFFICIAL FREE FIRE SITE ↗</a></section>
+  </main><footer>© <span id="year"></span> TITAN.AI <span class="foot-status">• LOCAL VALIDATION SYSTEM</span></footer><script src="script.js"></script>
+</body></html>
